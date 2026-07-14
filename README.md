@@ -8,38 +8,39 @@ A comprehensive gym management system with public marketing website, admin dashb
 gms/
 │
 ├── website/                              # Next.js 14+ — Public marketing site
-│   ├── app/
-│   │   ├── (marketing)/
-│   │   │   ├── page.tsx                  # Home page
-│   │   │   ├── about/
-│   │   │   │   └── page.tsx              # About page
-│   │   │   └── contact/
-│   │   │       └── page.tsx              # Contact page
-│   │   ├── pricing/
-│   │   │   └── page.tsx                  # All plans, dynamic from API
-│   │   ├── register/
-│   │   │   ├── page.tsx                  # Lead inquiry form
-│   │   │   └── success/
-│   │   │       └── page.tsx              # Registration success
-│   │   ├── layout.tsx                    # Root layout
-│   │   └── globals.css                   # Global styles
-│   ├── components/
-│   │   ├── ui/                           # shadcn/ui components
-│   │   ├── pricing/
-│   │   │   ├── pricing-card.tsx         # Individual plan card
-│   │   │   └── pricing-section.tsx       # Pricing grid
-│   │   └── forms/
-│   │       ├── register-form.tsx         # Lead inquiry form
-│   │       └── contact-form.tsx          # Contact form
-│   ├── lib/
-│   │   ├── api/
-│   │   │   ├── client.ts                 # fetch wrapper -> backend-api
-│   │   │   └── types.ts                  # API response types
-│   │   └── validations/
-│   │       ├── register.ts               # zod schema for registration
-│   │       └── contact.ts                # zod schema for contact
-│   ├── types/
-│   │   └── index.ts                      # Shared types
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── (marketing)/
+│   │   │   │   ├── page.tsx              # Home page
+│   │   │   │   ├── about/
+│   │   │   │   │   └── page.tsx          # About page
+│   │   │   │   └── contact/
+│   │   │   │       └── page.tsx          # Contact page
+│   │   │   ├── pricing/
+│   │   │   │   └── page.tsx              # All plans, dynamic from API
+│   │   │   ├── register/
+│   │   │   │   ├── page.tsx              # Lead inquiry form
+│   │   │   │   └── success/
+│   │   │   │       └── page.tsx          # Registration success
+│   │   │   ├── layout.tsx                # Root layout
+│   │   │   └── globals.css               # Global styles
+│   │   ├── components/
+│   │   │   ├── ui/                       # shadcn/ui components
+│   │   │   ├── pricing/
+│   │   │   │   ├── pricing-card.tsx     # Individual plan card
+│   │   │   │   └── pricing-section.tsx   # Pricing grid
+│   │   │   └── forms/
+│   │   │       ├── register-form.tsx     # Lead inquiry form
+│   │   │       └── contact-form.tsx      # Contact form
+│   │   ├── lib/
+│   │   │   ├── api/
+│   │   │   │   ├── client.ts             # fetch wrapper -> backend-api
+│   │   │   │   └── types.ts              # API response types
+│   │   │   └── validations/
+│   │   │       ├── register.ts           # zod schema for registration
+│   │   │       └── contact.ts            # zod schema for contact
+│   │   └── types/
+│   │       └── index.ts                  # Shared types
 │   ├── public/                            # Static assets
 │   ├── package.json
 │   ├── next.config.js
@@ -49,119 +50,120 @@ gms/
 └── app/
     │
     ├── frontend/                          # Next.js 14+ — Admin + User dashboard
-    │   ├── app/
-    │   │   ├── (auth)/
-    │   │   │   ├── login/
-    │   │   │   │   └── page.tsx          # Login page
-    │   │   │   └── forgot-password/
-    │   │   │       └── page.tsx          # Password reset
-    │   │   ├── admin/
-    │   │   │   ├── overview/
-    │   │   │   │   └── page.tsx          # Dashboard overview
-    │   │   │   ├── members/
-    │   │   │   │   ├── page.tsx          # Members list
-    │   │   │   │   ├── [id]/
-    │   │   │   │   │   └── page.tsx      # Member details
-    │   │   │   │   └── new/
-    │   │   │   │       └── page.tsx      # Add member
-    │   │   │   ├── staff/
-    │   │   │   │   ├── page.tsx          # Staff management
-    │   │   │   │   └── [id]/
-    │   │   │   │       └── page.tsx      # Staff details
-    │   │   │   ├── trainers/
-    │   │   │   │   ├── page.tsx          # Trainer management
-    │   │   │   │   ├── [id]/
-    │   │   │   │   │   └── page.tsx      # Trainer details
-    │   │   │   │   ├── schedule/
-    │   │   │   │   │   └── page.tsx      # Trainer schedule
-    │   │   │   │   ├── sessions/
-    │   │   │   │   │   ├── page.tsx      # Training sessions
+    │   ├── src/
+    │   │   ├── app/
+    │   │   │   ├── (auth)/
+    │   │   │   │   ├── login/
+    │   │   │   │   │   └── page.tsx      # Login page
+    │   │   │   │   └── forgot-password/
+    │   │   │   │       └── page.tsx      # Password reset
+    │   │   │   ├── admin/
+    │   │   │   │   ├── overview/
+    │   │   │   │   │   └── page.tsx      # Dashboard overview
+    │   │   │   │   ├── members/
+    │   │   │   │   │   ├── page.tsx      # Members list
+    │   │   │   │   │   ├── [id]/
+    │   │   │   │   │   │   └── page.tsx  # Member details
+    │   │   │   │   │   └── new/
+    │   │   │   │   │       └── page.tsx  # Add member
+    │   │   │   │   ├── staff/
+    │   │   │   │   │   ├── page.tsx      # Staff management
     │   │   │   │   │   └── [id]/
-    │   │   │   │   │       └── page.tsx  # Session details
-    │   │   │   │   └── performance/
-    │   │   │   │       └── page.tsx      # Trainer performance
-    │   │   │   ├── plans/
-    │   │   │   │   ├── page.tsx          # Membership plans
-    │   │   │   │   ├── [id]/
-    │   │   │   │   │   └── page.tsx      # Plan details
-    │   │   │   │   └── new/
-    │   │   │   │       └── page.tsx      # Create plan
-    │   │   │   ├── inquiries/
-    │   │   │   │   ├── page.tsx          # Lead inquiries
-    │   │   │   │   └── [id]/
-    │   │   │   │       └── page.tsx      # Inquiry details
-    │   │   │   ├── payments/
-    │   │   │   │   ├── page.tsx          # Payment history
-    │   │   │   │   └── [id]/
-    │   │   │   │       └── page.tsx      # Payment details
-    │   │   │   ├── attendance/
-    │   │   │   │   ├── page.tsx          # Attendance tracking
-    │   │   │   │   └── [id]/
-    │   │   │   │       └── page.tsx      # Member attendance
-    │   │   │   ├── reports/
-    │   │   │   │   ├── page.tsx          # Reports dashboard
-    │   │   │   │   ├── revenue.tsx       # Revenue reports
-    │   │   │   │   └── attendance.tsx    # Attendance reports
-    │   │   │   └── settings/
-    │   │   │       ├── page.tsx          # General settings
-    │   │   │       ├── profile.tsx       # Admin profile
-    │   │   │       └── branch.tsx        # Branch settings
-    │   │   ├── user/
-    │   │   │   ├── overview/
-    │   │   │   │   └── page.tsx          # User dashboard
-    │   │   │   ├── membership/
-    │   │   │   │   ├── page.tsx          # Current membership
-    │   │   │   │   └── history.tsx       # Membership history
-    │   │   │   ├── payments/
-    │   │   │   │   ├── page.tsx          # Payment history
-    │   │   │   │   └── [id]/
-    │   │   │   │       └── page.tsx      # Invoice details
-    │   │   │   ├── attendance/
-    │   │   │   │   ├── page.tsx          # Attendance history
-    │   │   │   │   └── calendar.tsx       # Attendance calendar
-    │   │   │   ├── trainers/
-    │   │   │   │   ├── page.tsx          # Available trainers
-    │   │   │   │   ├── [id]/
-    │   │   │   │   │   └── page.tsx      # Trainer profile
-    │   │   │   │   ├── book/
-    │   │   │   │   │   └── page.tsx      # Book training session
-    │   │   │   │   └── sessions/
-    │   │   │   │       └── page.tsx      # My training sessions
-    │   │   │   └── profile/
-    │   │   │       └── page.tsx          # User profile
-    │   │   ├── layout.tsx                 # Dashboard layout
-    │   │   ├── globals.css                # Global styles
-    │   │   └── error.tsx                  # Error boundary
-    │   ├── components/
-    │   │   ├── ui/                        # shadcn/ui components
-    │   │   ├── charts/
-    │   │   │   ├── revenue-chart.tsx     # ApexCharts revenue
-    │   │   │   ├── attendance-chart.tsx  # ApexCharts attendance
-    │   │   │   └── membership-chart.tsx  # ApexCharts membership
-    │   │   └── layout/
-    │   │       ├── sidebar.tsx           # Dashboard sidebar
-    │   │       ├── navbar.tsx            # Top navigation
-    │   │       └── rbac-guard.tsx        # Role-based access control
-    │   ├── lib/
-    │   │   ├── api/
-    │   │   │   ├── client.ts             # API client
-    │   │   │   └── endpoints.ts           # API endpoints
-    │   │   ├── auth/
-    │   │   │   ├── sanctum.ts            # Sanctum token handling
-    │   │   │   └── session.ts            # Session management
-    │   │   └── rbac/
-    │   │       ├── permissions.ts        # Permission definitions
-    │   │       └── roles.ts               # Role definitions
-    │   ├── hooks/
-    │   │   ├── useAuth.ts                # Authentication hook
-    │   │   ├── usePermissions.ts         # Permission check hook
-    │   │   └── useApi.ts                 # API hook
-    │   ├── types/
-    │   │   ├── auth.ts                   # Auth types
-    │   │   ├── member.ts                 # Member types
-    │   │   ├── payment.ts                # Payment types
-    │   │   └── index.ts                  # Shared types
-    │   ├── middleware.ts                  # Route protection
+    │   │   │   │   │       └── page.tsx  # Staff details
+    │   │   │   │   ├── trainers/
+    │   │   │   │   │   ├── page.tsx      # Trainer management
+    │   │   │   │   │   ├── [id]/
+    │   │   │   │   │   │   └── page.tsx  # Trainer details
+    │   │   │   │   │   ├── schedule/
+    │   │   │   │   │   │   └── page.tsx  # Trainer schedule
+    │   │   │   │   │   ├── sessions/
+    │   │   │   │   │   │   ├── page.tsx  # Training sessions
+    │   │   │   │   │   │   └── [id]/
+    │   │   │   │   │   │       └── page.tsx # Session details
+    │   │   │   │   │   └── performance/
+    │   │   │   │   │       └── page.tsx  # Trainer performance
+    │   │   │   │   ├── plans/
+    │   │   │   │   │   ├── page.tsx      # Membership plans
+    │   │   │   │   │   ├── [id]/
+    │   │   │   │   │   │   └── page.tsx  # Plan details
+    │   │   │   │   │   └── new/
+    │   │   │   │   │       └── page.tsx  # Create plan
+    │   │   │   │   ├── inquiries/
+    │   │   │   │   │   ├── page.tsx      # Lead inquiries
+    │   │   │   │   │   └── [id]/
+    │   │   │   │   │       └── page.tsx  # Inquiry details
+    │   │   │   │   ├── payments/
+    │   │   │   │   │   ├── page.tsx      # Payment history
+    │   │   │   │   │   └── [id]/
+    │   │   │   │   │       └── page.tsx  # Payment details
+    │   │   │   │   ├── attendance/
+    │   │   │   │   │   ├── page.tsx      # Attendance tracking
+    │   │   │   │   │   └── [id]/
+    │   │   │   │   │       └── page.tsx  # Member attendance
+    │   │   │   │   ├── reports/
+    │   │   │   │   │   ├── page.tsx      # Reports dashboard
+    │   │   │   │   │   ├── revenue.tsx   # Revenue reports
+    │   │   │   │   │   └── attendance.tsx # Attendance reports
+    │   │   │   │   └── settings/
+    │   │   │   │       ├── page.tsx      # General settings
+    │   │   │   │       ├── profile.tsx   # Admin profile
+    │   │   │   │       └── branch.tsx   # Branch settings
+    │   │   │   ├── user/
+    │   │   │   │   ├── overview/
+    │   │   │   │   │   └── page.tsx      # User dashboard
+    │   │   │   │   ├── membership/
+    │   │   │   │   │   ├── page.tsx      # Current membership
+    │   │   │   │   │   └── history.tsx   # Membership history
+    │   │   │   │   ├── payments/
+    │   │   │   │   │   ├── page.tsx      # Payment history
+    │   │   │   │   │   └── [id]/
+    │   │   │   │   │       └── page.tsx  # Invoice details
+    │   │   │   │   ├── attendance/
+    │   │   │   │   │   ├── page.tsx      # Attendance history
+    │   │   │   │   │   └── calendar.tsx  # Attendance calendar
+    │   │   │   │   ├── trainers/
+    │   │   │   │   │   ├── page.tsx      # Available trainers
+    │   │   │   │   │   ├── [id]/
+    │   │   │   │   │   │   └── page.tsx  # Trainer profile
+    │   │   │   │   │   ├── book/
+    │   │   │   │   │   │   └── page.tsx  # Book training session
+    │   │   │   │   │   └── sessions/
+    │   │   │   │   │       └── page.tsx  # My training sessions
+    │   │   │   │   └── profile/
+    │   │   │   │       └── page.tsx      # User profile
+    │   │   │   ├── layout.tsx             # Dashboard layout
+    │   │   │   ├── globals.css            # Global styles
+    │   │   │   └── error.tsx              # Error boundary
+    │   │   ├── components/
+    │   │   │   ├── ui/                    # shadcn/ui components
+    │   │   │   ├── charts/
+    │   │   │   │   ├── revenue-chart.tsx # ApexCharts revenue
+    │   │   │   │   ├── attendance-chart.tsx # ApexCharts attendance
+    │   │   │   │   └── membership-chart.tsx # ApexCharts membership
+    │   │   │   └── layout/
+    │   │   │       ├── sidebar.tsx       # Dashboard sidebar
+    │   │   │       ├── navbar.tsx        # Top navigation
+    │   │   │       └── rbac-guard.tsx    # Role-based access control
+    │   │   ├── lib/
+    │   │   │   ├── api/
+    │   │   │   │   ├── client.ts         # API client
+    │   │   │   │   └── endpoints.ts      # API endpoints
+    │   │   │   ├── auth/
+    │   │   │   │   ├── session.ts       # Session management
+    │   │   │   │   └── sanctum.ts       # Sanctum token handling
+    │   │   │   └── rbac/
+    │   │   │       ├── permissions.ts   # Permission definitions
+    │   │   │       └── roles.ts         # Role definitions
+    │   │   ├── hooks/
+    │   │   │   ├── useAuth.ts           # Authentication hook
+    │   │   │   ├── usePermissions.ts    # Permission check hook
+    │   │   │   └── useApi.ts           # API hook
+    │   │   ├── types/
+    │   │   │   ├── auth.ts              # Auth types
+    │   │   │   ├── member.ts            # Member types
+    │   │   │   ├── payment.ts           # Payment types
+    │   │   │   └── index.ts            # Shared types
+    │   │   └── middleware.ts            # Route protection
     │   ├── package.json
     │   ├── next.config.js
     │   ├── tailwind.config.js
@@ -237,7 +239,24 @@ gms/
         │   │   ├── TrainerSchedule.php                           # Trainer availability
         │   │   ├── TrainerSpecialization.php                      # Trainer expertise
         │   │   ├── Attendance.php                                  # Attendance records
-        │   │   └── Branch.php                                     # Gym branches
+        │   │   ├── Branch.php                                     # Gym branches
+        │   │   ├── DietPlan.php                                   # Diet plans
+        │   │   ├── DietMeal.php                                   # Diet meals
+        │   │   ├── MemberDiet.php                                 # Member diet assignments
+        │   │   ├── DietProgress.php                               # Diet progress tracking
+        │   │   ├── MemberWorkout.php                              # Member workout sessions
+        │   │   ├── Exercise.php                                   # Exercise library
+        │   │   ├── WorkoutExercise.php                            # Workout-exercise pivot
+        │   │   ├── Coupon.php                                      # Discount coupons
+        │   │   ├── Discount.php                                   # Applied discounts
+        │   │   ├── HealthInfo.php                                 # Member health information
+        │   │   ├── Equipment.php                                  # Gym equipment
+        │   │   ├── EquipmentMaintenance.php                       # Equipment maintenance
+        │   │   ├── Locker.php                                     # Gym lockers
+        │   │   ├── MemberLocker.php                               # Locker assignments
+        │   │   ├── Review.php                                      # Member reviews
+        │   │   ├── LeaveRequest.php                               # Staff leave requests
+        │   │   └── Expense.php                                    # Expense tracking
         │   ├── Repositories/
         │   │   ├── Contracts/
         │   │   │   ├── MemberRepositoryInterface.php
@@ -255,49 +274,79 @@ gms/
         │   │   ├── Payment/
         │   │   │   ├── SslCommerzService.php                     # SSLCommerz integration
         │   │   │   ├── PaymentGatewayInterface.php                # Payment gateway contract
+        │   │   │   ├── CouponService.php                          # Coupon management
         │   │   │   └── InvoiceService.php                         # Invoice generation
         │   │   ├── Admin/
         │   │   │   ├── MemberService.php                          # Member management
         │   │   │   ├── TrainerService.php                         # Trainer management
         │   │   │   ├── TrainingSessionService.php                # Training session management
         │   │   │   ├── PlanService.php                            # Plan management
-        │   │   │   └── ReportService.php                          # Report generation
-        │   │   └── User/
-        │   │       ├── SubscriptionService.php                    # User subscriptions
-        │   │       └── AttendanceService.php                      # Attendance tracking
+        │   │   │   ├── ReportService.php                          # Report generation
+        │   │   │   ├── DietService.php                            # Diet plan management
+        │   │   │   ├── WorkoutService.php                         # Workout management
+        │   │   │   ├── HealthService.php                          # Health information service
+        │   │   │   ├── EquipmentService.php                       # Equipment management
+        │   │   │   ├── LockerService.php                          # Locker management
+        │   │   │   └── ExpenseService.php                         # Expense management
+        │   │   ├── User/
+        │   │   │   ├── SubscriptionService.php                    # User subscriptions
+        │   │   │   ├── AttendanceService.php                      # Attendance tracking
+        │   │   │   └── ReviewService.php                          # Review management
+        │   │   └── Staff/
+        │   │       └── LeaveService.php                            # Leave management
         │   ├── Enums/
         │   │   ├── PaymentStatus.php                              # Payment statuses
         │   │   ├── SubscriptionStatus.php                         # Subscription statuses
         │   │   ├── InquiryStatus.php                              # Inquiry statuses
         │   │   ├── TrainingSessionStatus.php                      # Training session statuses
         │   │   ├── TrainerStatus.php                              # Trainer employment status
-        │   │   └── SpecializationType.php                         # Training specializations
+        │   │   ├── SpecializationType.php                         # Training specializations
+        │   │   ├── DietType.php                                   # Diet plan types
+        │   │   ├── LeaveStatus.php                                # Leave request statuses
+        │   │   ├── ReviewStatus.php                               # Review statuses
+        │   │   └── ExpenseCategory.php                            # Expense categories
         │   ├── Events/
         │   │   ├── InquiryApproved.php                            # Lead approval event
         │   │   ├── PaymentReceived.php                            # Payment event
-        │   │   └── SubscriptionExpiring.php                       # Expiry warning
+        │   │   ├── SubscriptionExpiring.php                       # Expiry warning
+        │   │   ├── DietAssigned.php                               # Diet assignment event
+        │   │   ├── WorkoutCompleted.php                          # Workout completion event
+        │   │   └── LeaveRequested.php                            # Leave request event
         │   ├── Listeners/
         │   │   ├── SendWelcomeEmail.php                           # Welcome email
         │   │   ├── GenerateInvoice.php                            # Invoice generation
-        │   │   └── SendExpiryReminder.php                          # Expiry reminder
+        │   │   ├── SendExpiryReminder.php                          # Expiry reminder
+        │   │   ├── SendDietPlanEmail.php                          # Diet plan notification
+        │   │   └── ProcessLeaveRequest.php                        # Leave processing
         │   ├── Jobs/
         │   │   ├── CheckExpiredSubscriptions.php                 # Scheduled subscription check
-        │   │   └── ProcessRefund.php                              # Refund processing
+        │   │   ├── ProcessRefund.php                              # Refund processing
+        │   │   ├── CheckDietProgress.php                          # Diet progress tracking
+        │   │   ├── EquipmentMaintenanceReminder.php               # Maintenance reminders
+        │   │   └── ProcessExpenses.php                            # Expense processing
         │   ├── Notifications/
         │   │   ├── WelcomeEmail.php                               # Welcome notification
         │   │   ├── PaymentInvoice.php                             # Payment notification
-        │   │   └── ExpiryReminder.php                             # Expiry reminder
+        │   │   ├── ExpiryReminder.php                             # Expiry reminder
+        │   │   ├── DietProgressReminder.php                       # Diet progress reminder
+        │   │   └── LeaveStatusNotification.php                   # Leave status notification
         │   ├── Policies/
         │   │   ├── MemberPolicy.php                                # Member policies
-        │   │   └── PaymentPolicy.php                               # Payment policies
+        │   │   ├── PaymentPolicy.php                               # Payment policies
+        │   │   ├── ReviewPolicy.php                                # Review policies
+        │   │   └── LeavePolicy.php                                 # Leave policies
         │   ├── Exceptions/
         │   │   ├── Handler.php                                     # Exception handling
         │   │   └── Api/
         │   │       ├── PaymentException.php                        # Payment errors
-        │   │       └── SubscriptionException.php                   # Subscription errors
+        │   │       ├── SubscriptionException.php                   # Subscription errors
+        │   │       ├── DietException.php                           # Diet-related errors
+        │   │       └── ReviewException.php                         # Review-related errors
         │   └── Helpers/
         │       ├── DateHelper.php                                  # Date utilities
-        │       └── PaymentHelper.php                              # Payment utilities
+        │       ├── PaymentHelper.php                              # Payment utilities
+        │       ├── DietHelper.php                                  # Diet calculation utilities
+        │       └── WorkoutHelper.php                              # Workout calculation utilities
         ├── database/
         │   ├── migrations/
         │   │   ├── 2024_01_01_000001_create_users_table.php
@@ -314,16 +363,38 @@ gms/
         │   │   ├── 2024_01_01_000012_create_trainer_schedules_table.php
         │   │   ├── 2024_01_01_000013_create_training_sessions_table.php
         │   │   ├── 2024_01_01_000014_create_attendance_table.php
-        │   │   └── 2024_01_01_000015_create_roles_and_permissions.php
+        │   │   ├── 2024_01_01_000015_create_roles_and_permissions.php
+        │   │   ├── 2024_01_01_000016_create_diet_plans_table.php
+        │   │   ├── 2024_01_01_000017_create_diet_meals_table.php
+        │   │   ├── 2024_01_01_000018_create_member_diets_table.php
+        │   │   ├── 2024_01_01_000019_create_diet_progress_table.php
+        │   │   ├── 2024_01_01_000020_create_exercises_table.php
+        │   │   ├── 2024_01_01_000021_create_member_workouts_table.php
+        │   │   ├── 2024_01_01_000022_create_workout_exercises_table.php
+        │   │   ├── 2024_01_01_000023_create_coupons_table.php
+        │   │   ├── 2024_01_01_000024_create_discounts_table.php
+        │   │   ├── 2024_01_01_000025_create_health_info_table.php
+        │   │   ├── 2024_01_01_000026_create_equipment_table.php
+        │   │   ├── 2024_01_01_000027_create_equipment_maintenance_table.php
+        │   │   ├── 2024_01_01_000028_create_lockers_table.php
+        │   │   ├── 2024_01_01_000029_create_member_lockers_table.php
+        │   │   ├── 2024_01_01_000030_create_reviews_table.php
+        │   │   ├── 2024_01_01_000031_create_leave_requests_table.php
+        │   │   └── 2024_01_01_000032_create_expenses_table.php
         │   ├── seeders/
         │   │   ├── RolesSeeder.php                                # Admin, Staff, Member roles
         │   │   ├── PlansSeeder.php                                # Default membership plans
         │   │   ├── AdminSeeder.php                                # Default admin user
-        │   │   └── BranchSeeder.php                               # Default branches
+        │   │   ├── BranchSeeder.php                               # Default branches
+        │   │   ├── DietPlansSeeder.php                            # Default diet plans
+        │   │   ├── ExercisesSeeder.php                            # Default exercises
+        │   │   └── EquipmentSeeder.php                            # Default equipment
         │   └── factories/
         │       ├── MemberFactory.php
         │       ├── PaymentFactory.php
-        │       └── AttendanceFactory.php
+        │       ├── AttendanceFactory.php
+        │       ├── WorkoutFactory.php
+        │       └── DietProgressFactory.php
         ├── routes/
         │   ├── api.php                                              # API routes (v1/public, v1/admin, v1/user)
         │   └── web.php                                              # Web routes (if needed)
@@ -431,6 +502,115 @@ gms/
               │ - end_time   │        │ - level      │
               │ - status     │        └──────────────┘
               └──────────────┘
+
+┌─────────────┐     ┌──────────────┐     ┌─────────────┐
+│  DietPlans  │────▶│  DietMeals   │────▶│ MemberDiet  │
+│             │     │              │     │             │
+│ - id        │     │ - id         │     │ - id        │
+│ - name      │     │ - diet_plan_id│     │ - member_id │
+│ - duration  │     │ - meal_type  │     │ - diet_plan_id│
+│ - type      │     │ - name       │     │ - start_date│
+│ - calories  │     │ - calories  │     │ - end_date  │
+│ - status    │     │ - protein   │     │ - status    │
+└─────────────┘     │ - carbs     │     └─────────────┘
+                     │ - fats      │           │
+                     └──────────────┘           │
+                                                 ▼
+                                          ┌─────────────┐
+                                          │DietProgress │
+                                          │             │
+                                          │ - id        │
+                                          │ - member_diet_id│
+                                          │ - weight    │
+                                          │ - date      │
+                                          │ - notes     │
+                                          └─────────────┘
+
+┌─────────────┐     ┌──────────────┐     ┌─────────────┐
+│MemberWorkout│────▶│ Trainers     │────▶│  Equipment  │
+│             │     │              │     │             │
+│ - id        │     │ - id         │     │ - id        │
+│ - member_id │     │ - user_id    │     │ - name      │
+│ - trainer_id│     │ - branch_id  │     │ - type      │
+│ - date      │     │ - specialty │     │ - status    │
+│ - duration  │     │ - cert      │     │ - purchase_date│
+│ - type      │     │ - rate      │     │ - maintenance│
+│ - intensity │     └──────────────┘     │ - cost      │
+│ - calories  │                            └─────────────┘
+└─────────────┘                                    ▲
+                     ▲                              │
+                     │                              │
+                ┌──────────────┐              ┌──────────────┐
+                │WorkoutExercises│              │  Equipment   │
+                │              │              │ Maintenance  │
+                │ - id         │              │              │
+                │ - workout_id │              │ - id         │
+                │ - exercise_id│              │ - equipment_id│
+                │ - sets       │              │ - date       │
+                │ - reps       │              │ - cost       │
+                │ - weight     │              │ - technician │
+                └──────────────┘              └──────────────┘
+
+┌─────────────┐     ┌──────────────┐     ┌─────────────┐
+│   Coupons   │────▶│  Payments    │────▶│  Expenses   │
+│             │     │              │     │             │
+│ - id        │     │ - id         │     │ - id        │
+│ - code      │     │ - member_id  │     │ - category  │
+│ - type      │     │ - amount     │     │ - amount    │
+│ - discount  │     │ - coupon_id  │     │ - date      │
+│ - min_order │     │ - status     │     │ - description│
+│ - max_uses  │     │ - method     │     │ - approved_by│
+│ - expires_at│     │ - txn_id     │     │ - branch_id │
+│ - status    │     └──────────────┘     └─────────────┘
+└─────────────┘             ▲
+                     │
+                     ▼
+                ┌──────────────┐
+                │  Discount    │
+                │              │
+                │ - id         │
+                │ - coupon_id │
+                │ - member_id │
+                │ - used_at    │
+                └──────────────┘
+
+┌─────────────┐     ┌──────────────┐     ┌─────────────┐
+│HealthInfo   │────▶│   Members    │────▶│   Reviews   │
+│             │     │              │     │             │
+│ - id        │     │ - id         │     │ - id        │
+│ - member_id │     │ - user_id    │     │ - member_id │
+│ - height    │     │ - phone      │     │ - trainer_id│
+│ - weight    │     │ - branch_id  │     │ - rating    │
+│ - bmi       │     │ - address    │     │ - comment   │
+│ - blood_type│     └──────────────┘     │ - date      │
+│ - allergies │             ▲            │ - status    │
+│ - conditions│             │            └─────────────┘
+│ - medications│             │                   │
+│ - emergency_contact│       │                   ▼
+└─────────────┘             │          ┌──────────────┐
+                            │          │LeaveRequests │
+                            │          │              │
+                            │          │ - id         │
+                     ┌──────────────┐│ - staff_id   │
+                     │   Lockers    ││ - leave_type │
+                     │              ││ - start_date │
+                     │ - id         ││ - end_date   │
+                     │ - number     ││ - reason     │
+                     │ - branch_id  ││ - status     │
+                     │ - size       ││ - approved_by│
+                     │ - status     │└──────────────┘
+                     └──────────────┘
+                            ▲
+                            │
+                     ┌──────────────┐
+                     │MemberLocker  │
+                     │              │
+                     │ - id         │
+                     │ - member_id  │
+                     │ - locker_id  │
+                     │ - assigned_at│
+                     │ - status     │
+                     └──────────────┘
 ```
 
 ### Key Relationships
@@ -449,6 +629,23 @@ gms/
 12. **Trainers → Trainer Schedule**: One-to-Many (A trainer can have multiple schedule entries)
 13. **Trainers → Trainer Specialization**: One-to-Many (A trainer can have multiple specializations)
 14. **Branches → Trainers**: One-to-Many (A branch can have multiple trainers)
+15. **Diet Plans → Diet Meals**: One-to-Many (A diet plan contains multiple meals)
+16. **Members → Member Diet**: One-to-Many (A member can have multiple diet plans)
+17. **Member Diet → Diet Progress**: One-to-Many (A member diet has multiple progress records)
+18. **Members → Member Workout**: One-to-Many (A member can have multiple workout sessions)
+19. **Member Workout → Trainers**: Many-to-One (Workout sessions are assigned to trainers)
+20. **Equipment → Equipment Maintenance**: One-to-Many (Equipment can have multiple maintenance records)
+21. **Lockers → Member Locker**: One-to-One (A locker is assigned to one member)
+22. **Members → Member Locker**: One-to-One (A member can have one locker)
+23. **Branches → Lockers**: One-to-Many (A branch has multiple lockers)
+24. **Coupons → Payments**: One-to-Many (A coupon can be used in multiple payments)
+25. **Members → Health Information**: One-to-One (A member has one health record)
+26. **Members → Reviews**: One-to-Many (A member can write multiple reviews)
+27. **Trainers → Reviews**: One-to-Many (A trainer can receive multiple reviews)
+28. **Staff → Leave Requests**: One-to-Many (A staff member can submit multiple leave requests)
+29. **Branches → Expenses**: One-to-Many (A branch has multiple expense records)
+30. **Members → Workouts**: One-to-Many (A member can have multiple workout sessions)
+31. **Workouts → Exercises**: One-to-Many (A workout contains multiple exercises)
 
 ## 🔐 Authentication System
 
@@ -457,34 +654,40 @@ gms/
 ```
 ┌─────────────┐      ┌─────────────┐      ┌──────────────┐
 │   Frontend  │      │ Backend API │      │   Database   │
-│             │      │             │      │              │
+│   (Next.js) │      │  (Laravel)  │      │   (MySQL)    │
 └──────┬──────┘      └──────┬──────┘      └──────┬───────┘
        │                    │                     │
        │ 1. Login Request   │                     │
        ├───────────────────>│                     │
-       │ POST /api/v1/login │                     │
+       │ POST /api/v1/admin/login               │
+       │ {email, password}  │                     │
        │                    │                     │
        │                    │ 2. Validate        │
        │                    │ Credentials        │
        │                    ├───────────────────>│
        │                    │                     │
-       │                    │ 3. Return User      │
+       │                    │ 3. Check User      │
+       │                    │ & Role             │
        │                    │<───────────────────│
        │                    │                     │
-       │ 4. Generate Token   │                     │
+       │ 4. Generate Sanctum│                     │
+       │    Token           │                     │
        │<───────────────────│                     │
+       │ {token, user}      │                     │
        │                    │                     │
        │ 5. Store Token      │                     │
        │ (localStorage)     │                     │
        │                    │                     │
-       │ 6. Protected Request│                     │
+       │ 6. Protected Request│                    │
        ├───────────────────>│                     │
-       │ Header: Token      │                     │
+       │ Header:            │                     │
+       │ Authorization: Bearer {token}             │
        │                    │                     │
-       │                    │ 7. Verify Token     │
-       │                    ├───────────────────>│
+       │                    │ 7. Validate Token   │
+       │                    │ via Sanctum         │
+       │                    │ middleware          │
        │                    │                     │
-       │ 8. Return Data      │                     │
+       │                    │ 8. Return Data      │
        │<───────────────────│                     │
 ```
 
@@ -498,9 +701,11 @@ gms/
 
 #### 2. Frontend (Next.js)
 - **Auth Context**: React Context for auth state management
-- **Token Storage**: localStorage for token persistence
-- **API Client**: Axios interceptor for token injection
+- **Token Storage**: localStorage for Sanctum token persistence
+- **API Client**: Axios interceptor for Sanctum token injection
 - **Route Protection**: Middleware and HOCs for protected routes
+- **Auth Hooks**: useAuth hook for authentication state
+- **Token Refresh**: Automatic token refresh mechanism
 
 ### Role-Based Access Control (RBAC)
 
@@ -788,32 +993,382 @@ gms/
 - created_at, updated_at
 ```
 
-### Trainer Management API Endpoints
+### Laravel API Route Structure
 
-#### Admin Trainer Endpoints
-```
-GET    /api/v1/admin/trainers                 - Get all trainers
-GET    /api/v1/admin/trainers/{id}            - Get trainer details
-POST   /api/v1/admin/trainers                 - Create new trainer
-PUT    /api/v1/admin/trainers/{id}            - Update trainer info
-DELETE /api/v1/admin/trainers/{id}            - Delete trainer
-GET    /api/v1/admin/trainers/{id}/schedule   - Get trainer schedule
-PUT    /api/v1/admin/trainers/{id}/schedule   - Update trainer schedule
-GET    /api/v1/admin/training-sessions        - Get all training sessions
-PUT    /api/v1/admin/training-sessions/{id}  - Update session status
-GET    /api/v1/admin/trainers/reports/performance - Trainer performance reports
+#### Route Grouping in Laravel (routes/api.php)
+
+```php
+<?php
+
+use App\Http\Controllers\Api\V1;
+use Illuminate\Support\Facades\Route;
+
+// API Version 1 Routes
+Route::prefix('v1')->group(function () {
+    
+    // Public Routes (No Authentication Required)
+    Route::prefix('public')->group(function () {
+        Route::get('/plans', [V1\Public\PricingController::class, 'index']);
+        Route::get('/trainers', [V1\Public\TrainerController::class, 'index']);
+        Route::post('/inquiries', [V1\Public\LeadInquiryController::class, 'store']);
+        Route::post('/register', [V1\Public\RegisterController::class, 'store']);
+        Route::post('/contact', [V1\Public\ContactController::class, 'store']);
+        Route::get('/coupons', [V1\Public\CouponController::class, 'index']);
+    });
+
+    // Admin Routes (Admin Authentication Required)
+    Route::middleware(['auth:sanctum', 'role:admin'])->prefix('admin')->group(function () {
+        
+        // Authentication
+        Route::post('/login', [V1\Admin\AuthController::class, 'login']);
+        Route::post('/logout', [V1\Admin\AuthController::class, 'logout']);
+        
+        // Members
+        Route::apiResource('members', V1\Admin\MemberController::class);
+        
+        // Staff
+        Route::apiResource('staff', V1\Admin\StaffController::class);
+        
+        // Trainers
+        Route::apiResource('trainers', V1\Admin\TrainerController::class);
+        Route::get('/trainers/{id}/schedule', [V1\Admin\TrainerController::class, 'schedule']);
+        Route::put('/trainers/{id}/schedule', [V1\Admin\TrainerController::class, 'updateSchedule']);
+        Route::get('/trainers/reports/performance', [V1\Admin\TrainerController::class, 'performanceReport']);
+        
+        // Training Sessions
+        Route::apiResource('training-sessions', V1\Admin\TrainingSessionController::class);
+        
+        // Diet Plans
+        Route::apiResource('diet-plans', V1\Admin\DietPlanController::class);
+        Route::get('/diet-plans/{id}/meals', [V1\Admin\DietPlanController::class, 'meals']);
+        Route::post('/diet-plans/{id}/meals', [V1\Admin\DietPlanController::class, 'addMeal']);
+        Route::get('/member-diets', [V1\Admin\MemberDietController::class, 'index']);
+        Route::post('/member-diets', [V1\Admin\MemberDietController::class, 'assign']);
+        Route::get('/diet-progress', [V1\Admin\DietProgressController::class, 'index']);
+        
+        // Workouts
+        Route::apiResource('member-workouts', V1\Admin\MemberWorkoutController::class);
+        Route::apiResource('exercises', V1\Admin\ExerciseController::class);
+        
+        // Health Information
+        Route::apiResource('health-info', V1\Admin\HealthInfoController::class);
+        
+        // Equipment
+        Route::apiResource('equipment', V1\Admin\EquipmentController::class);
+        Route::get('/equipment/{id}/maintenance', [V1\Admin\EquipmentController::class, 'maintenance']);
+        Route::post('/equipment/{id}/maintenance', [V1\Admin\EquipmentController::class, 'addMaintenance']);
+        
+        // Lockers
+        Route::apiResource('lockers', V1\Admin\LockerController::class);
+        Route::apiResource('member-lockers', V1\Admin\MemberLockerController::class);
+        
+        // Coupons & Discounts
+        Route::apiResource('coupons', V1\Admin\CouponController::class);
+        Route::get('/discounts', [V1\Admin\DiscountController::class, 'index']);
+        
+        // Reviews
+        Route::apiResource('reviews', V1\Admin\ReviewController::class);
+        
+        // Leave Requests
+        Route::apiResource('leave-requests', V1\Admin\LeaveRequestController::class);
+        
+        // Expenses
+        Route::apiResource('expenses', V1\Admin\ExpenseController::class);
+        
+        // Membership Plans
+        Route::apiResource('plans', V1\Admin\PlanController::class);
+        
+        // Inquiries & Payments
+        Route::apiResource('inquiries', V1\Admin\InquiryController::class);
+        Route::apiResource('payments', V1\Admin\PaymentController::class);
+        
+        // Attendance & Reports
+        Route::apiResource('attendance', V1\Admin\AttendanceController::class);
+        Route::get('/reports/revenue', [V1\Admin\ReportController::class, 'revenue']);
+        Route::get('/reports/attendance', [V1\Admin\ReportController::class, 'attendance']);
+        Route::get('/reports/trainer-performance', [V1\Admin\ReportController::class, 'trainerPerformance']);
+        
+        // Settings
+        Route::get('/settings', [V1\Admin\SettingsController::class, 'index']);
+        Route::put('/settings', [V1\Admin\SettingsController::class, 'update']);
+        Route::get('/settings/profile', [V1\Admin\SettingsController::class, 'profile']);
+        Route::put('/settings/profile', [V1\Admin\SettingsController::class, 'updateProfile']);
+    });
+
+    // User Routes (User Authentication Required)
+    Route::middleware(['auth:sanctum', 'role:member'])->prefix('user')->group(function () {
+        
+        // Authentication
+        Route::post('/login', [V1\User\AuthController::class, 'login']);
+        Route::post('/logout', [V1\User\AuthController::class, 'logout']);
+        
+        // Profile
+        Route::get('/profile', [V1\User\ProfileController::class, 'show']);
+        Route::put('/profile', [V1\User\ProfileController::class, 'update']);
+        
+        // Subscription
+        Route::get('/subscription', [V1\User\SubscriptionController::class, 'current']);
+        Route::get('/subscription/history', [V1\User\SubscriptionController::class, 'history']);
+        
+        // Payments
+        Route::apiResource('payments', V1\User\PaymentController::class)->only(['index', 'show']);
+        
+        // Attendance
+        Route::get('/attendance', [V1\User\AttendanceController::class, 'index']);
+        Route::get('/attendance/calendar', [V1\User\AttendanceController::class, 'calendar']);
+        
+        // Trainers
+        Route::get('/trainers', [V1\User\TrainerController::class, 'index']);
+        Route::get('/trainers/{id}', [V1\User\TrainerController::class, 'show']);
+        Route::get('/trainers/{id}/availability', [V1\User\TrainerController::class, 'availability']);
+        Route::get('/trainers/{id}/reviews', [V1\User\TrainerController::class, 'reviews']);
+        
+        // Training Sessions
+        Route::apiResource('training-sessions', V1\User\TrainingSessionController::class);
+        Route::post('/training-sessions/{id}/rating', [V1\User\TrainingSessionController::class, 'rate']);
+        
+        // Diet & Nutrition
+        Route::get('/diet-plans', [V1\User\DietController::class, 'availablePlans']);
+        Route::get('/my-diet', [V1\User\DietController::class, 'currentDiet']);
+        Route::get('/diet-progress', [V1\User\DietController::class, 'progress']);
+        Route::post('/diet-progress', [V1\User\DietController::class, 'updateProgress']);
+        
+        // Workouts
+        Route::get('/my-workouts', [V1\User\WorkoutController::class, 'index']);
+        Route::get('/my-workouts/{id}', [V1\User\WorkoutController::class, 'show']);
+        Route::post('/my-workouts/{id}/complete', [V1\User\WorkoutController::class, 'complete']);
+        Route::get('/exercises', [V1\User\WorkoutController::class, 'exercises']);
+        
+        // Health Information
+        Route::get('/health-info', [V1\User\HealthController::class, 'show']);
+        Route::put('/health-info', [V1\User\HealthController::class, 'update']);
+        
+        // Reviews
+        Route::get('/my-reviews', [V1\User\ReviewController::class, 'index']);
+        Route::post('/reviews', [V1\User\ReviewController::class, 'store']);
+        
+        // Lockers
+        Route::get('/my-locker', [V1\User\LockerController::class, 'show']);
+    });
+});
+
+// Health Check (No Versioning)
+Route::get('/health', function () {
+    return response()->json(['status' => 'ok', 'service' => 'GMS API']);
+});
 ```
 
-#### User Trainer Endpoints
+#### Benefits of API Versioning with Laravel:
+
+1. **🔄 Backward Compatibility**: Old v1 APIs continue working while you develop v2
+2. **🛡️ Security**: Separate middleware per role group (admin, user, public)
+3. **📊 Easy Monitoring**: Track usage patterns per API version
+4. **🚀 Smooth Migration**: Gradually migrate clients to newer versions
+5. **🎯 Role-Based Access**: Clear separation between admin, user, and public endpoints
+6. **📝 Easy Testing**: Test each version independently
+7. **🔧 Maintenance**: Maintain multiple API versions simultaneously
+
+#### URL Structure Examples:
+- **Public**: `/api/v1/public/plans`
+- **Admin**: `/api/v1/admin/members`
+- **User**: `/api/v1/user/my-workouts`
+- **Health**: `/api/health`
+
+### Complete API Endpoints
+
+#### Admin Endpoints
 ```
-GET  /api/v1/user/trainers                    - Browse available trainers
-GET  /api/v1/user/trainers/{id}               - Get trainer profile
-GET  /api/v1/user/trainers/{id}/availability  - Check trainer availability
-GET  /api/v1/user/trainers/{id}/reviews       - Get trainer reviews
-POST /api/v1/user/training-sessions            - Book training session
-GET  /api/v1/user/training-sessions           - Get my training sessions
-PUT  /api/v1/user/training-sessions/{id}      - Update/cancel session
-POST /api/v1/user/training-sessions/{id}/rating - Rate trainer session
+# Authentication
+POST   /api/v1/admin/login                    - Admin login
+POST   /api/v1/admin/logout                   - Admin logout
+
+# Members
+GET    /api/v1/admin/members                  - Get all members
+GET    /api/v1/admin/members/{id}             - Get member details
+POST   /api/v1/admin/members                  - Create member
+PUT    /api/v1/admin/members/{id}             - Update member
+DELETE /api/v1/admin/members/{id}             - Delete member
+
+# Staff
+GET    /api/v1/admin/staff                    - Get all staff
+GET    /api/v1/admin/staff/{id}               - Get staff details
+POST   /api/v1/admin/staff                    - Create staff
+PUT    /api/v1/admin/staff/{id}               - Update staff
+DELETE /api/v1/admin/staff/{id}               - Delete staff
+
+# Trainers
+GET    /api/v1/admin/trainers                  - Get all trainers
+GET    /api/v1/admin/trainers/{id}             - Get trainer details
+POST   /api/v1/admin/trainers                  - Create new trainer
+PUT    /api/v1/admin/trainers/{id}             - Update trainer info
+DELETE /api/v1/admin/trainers/{id}             - Delete trainer
+GET    /api/v1/admin/trainers/{id}/schedule    - Get trainer schedule
+PUT    /api/v1/admin/trainers/{id}/schedule    - Update trainer schedule
+
+# Training Sessions
+GET    /api/v1/admin/training-sessions         - Get all training sessions
+GET    /api/v1/admin/training-sessions/{id}    - Get session details
+PUT    /api/v1/admin/training-sessions/{id}    - Update session status
+
+# Diet Plans
+GET    /api/v1/admin/diet-plans                - Get all diet plans
+GET    /api/v1/admin/diet-plans/{id}           - Get diet plan details
+POST   /api/v1/admin/diet-plans                - Create diet plan
+PUT    /api/v1/admin/diet-plans/{id}           - Update diet plan
+DELETE /api/v1/admin/diet-plans/{id}           - Delete diet plan
+GET    /api/v1/admin/diet-plans/{id}/meals     - Get diet plan meals
+POST   /api/v1/admin/diet-plans/{id}/meals     - Add meal to plan
+GET    /api/v1/admin/member-diets              - Get member diet assignments
+POST   /api/v1/admin/member-diets              - Assign diet to member
+GET    /api/v1/admin/diet-progress             - Get diet progress tracking
+
+# Workouts
+GET    /api/v1/admin/member-workouts           - Get member workouts
+GET    /api/v1/admin/member-workouts/{id}      - Get workout details
+POST   /api/v1/admin/member-workouts           - Create workout plan
+PUT    /api/v1/admin/member-workouts/{id}      - Update workout plan
+GET    /api/v1/admin/exercises                 - Get exercise library
+POST   /api/v1/admin/exercises                 - Add exercise
+
+# Health Information
+GET    /api/v1/admin/health-info               - Get member health info
+GET    /api/v1/admin/health-info/{id}          - Get health details
+POST   /api/v1/admin/health-info/{id}         - Update health info
+
+# Equipment
+GET    /api/v1/admin/equipment                 - Get all equipment
+GET    /api/v1/admin/equipment/{id}            - Get equipment details
+POST   /api/v1/admin/equipment                 - Add equipment
+PUT    /api/v1/admin/equipment/{id}            - Update equipment
+DELETE /api/v1/admin/equipment/{id}            - Delete equipment
+GET    /api/v1/admin/equipment/{id}/maintenance - Get maintenance history
+POST   /api/v1/admin/equipment/{id}/maintenance - Add maintenance record
+
+# Lockers
+GET    /api/v1/admin/lockers                   - Get all lockers
+GET    /api/v1/admin/lockers/{id}              - Get locker details
+POST   /api/v1/admin/lockers                   - Add locker
+PUT    /api/v1/admin/lockers/{id}              - Update locker status
+POST   /api/v1/admin/member-lockers            - Assign locker to member
+GET    /api/v1/admin/member-lockers            - Get locker assignments
+
+# Coupons & Discounts
+GET    /api/v1/admin/coupons                   - Get all coupons
+POST   /api/v1/admin/coupons                   - Create coupon
+PUT    /api/v1/admin/coupons/{id}              - Update coupon
+DELETE /api/v1/admin/coupons/{id}              - Delete coupon
+GET    /api/v1/admin/discounts                 - Get discount usage
+
+# Reviews
+GET    /api/v1/admin/reviews                   - Get all reviews
+PUT    /api/v1/admin/reviews/{id}              - Update review status
+DELETE /api/v1/admin/reviews/{id}              - Delete review
+
+# Leave Requests
+GET    /api/v1/admin/leave-requests            - Get all leave requests
+GET    /api/v1/admin/leave-requests/{id}       - Get leave request details
+PUT    /api/v1/admin/leave-requests/{id}       - Approve/reject leave request
+
+# Expenses
+GET    /api/v1/admin/expenses                  - Get all expenses
+GET    /api/v1/admin/expenses/{id}             - Get expense details
+POST   /api/v1/admin/expenses                  - Add expense
+PUT    /api/v1/admin/expenses/{id}             - Update expense
+DELETE /api/v1/admin/expenses/{id}             - Delete expense
+
+# Membership Plans
+GET    /api/v1/admin/plans                     - Get all plans
+POST   /api/v1/admin/plans                     - Create plan
+PUT    /api/v1/admin/plans/{id}                - Update plan
+DELETE /api/v1/admin/plans/{id}                - Delete plan
+
+# Inquiries & Payments
+GET    /api/v1/admin/inquiries                 - Get all inquiries
+PUT    /api/v1/admin/inquiries/{id}            - Update inquiry status
+GET    /api/v1/admin/payments                   - Get all payments
+GET    /api/v1/admin/payments/{id}              - Get payment details
+
+# Attendance & Reports
+GET    /api/v1/admin/attendance                 - Get attendance records
+GET    /api/v1/admin/reports/revenue            - Revenue reports
+GET    /api/v1/admin/reports/attendance         - Attendance reports
+GET    /api/v1/admin/reports/trainer-performance - Trainer performance reports
+
+# Settings
+GET    /api/v1/admin/settings                  - Get system settings
+PUT    /api/v1/admin/settings                  - Update settings
+GET    /api/v1/admin/settings/profile          - Admin profile
+PUT    /api/v1/admin/settings/profile          - Update admin profile
+```
+
+#### User Endpoints
+```
+# Authentication
+POST   /api/v1/user/login                      - User login
+POST   /api/v1/user/logout                     - User logout
+
+# Profile
+GET    /api/v1/user/profile                    - Get user profile
+PUT    /api/v1/user/profile                    - Update profile
+
+# Subscription
+GET    /api/v1/user/subscription               - Current subscription
+GET    /api/v1/user/subscription/history       - Subscription history
+
+# Payments
+GET    /api/v1/user/payments                   - Payment history
+GET    /api/v1/user/payments/{id}              - Payment details
+POST   /api/v1/user/payments                   - Make payment
+
+# Attendance
+GET    /api/v1/user/attendance                 - Attendance history
+GET    /api/v1/user/attendance/calendar        - Attendance calendar
+
+# Trainers
+GET    /api/v1/user/trainers                   - Browse available trainers
+GET    /api/v1/user/trainers/{id}              - Get trainer profile
+GET    /api/v1/user/trainers/{id}/availability - Check trainer availability
+GET    /api/v1/user/trainers/{id}/reviews      - Get trainer reviews
+
+# Training Sessions
+POST   /api/v1/user/training-sessions          - Book training session
+GET    /api/v1/user/training-sessions          - Get my training sessions
+GET    /api/v1/user/training-sessions/{id}     - Session details
+PUT    /api/v1/user/training-sessions/{id}     - Update/cancel session
+POST   /api/v1/user/training-sessions/{id}/rating - Rate trainer session
+
+# Diet & Nutrition
+GET    /api/v1/user/diet-plans                 - Available diet plans
+GET    /api/v1/user/my-diet                    - Current diet plan
+GET    /api/v1/user/diet-progress              - Diet progress tracking
+POST   /api/v1/user/diet-progress              - Update diet progress
+
+# Workouts
+GET    /api/v1/user/my-workouts                - My workout plans
+GET    /api/v1/user/my-workouts/{id}           - Workout details
+POST   /api/v1/user/my-workouts/{id}/complete  - Complete workout
+GET    /api/v1/user/exercises                  - Exercise library
+
+# Health Information
+GET    /api/v1/user/health-info                - My health information
+PUT    /api/v1/user/health-info                - Update health information
+
+# Reviews
+GET    /api/v1/user/my-reviews                 - My reviews
+POST   /api/v1/user/reviews                    - Submit review
+
+# Lockers
+GET    /api/v1/user/my-locker                  - My locker assignment
+```
+
+#### Public Endpoints
+```
+GET  /api/v1/public/plans                      - Get membership plans
+GET  /api/v1/public/trainers                   - Browse trainers
+POST /api/v1/public/inquiries                  - Submit lead inquiry
+POST /api/v1/public/register                   - Public registration
+POST /api/v1/public/contact                    - Contact form submission
+GET  /api/v1/public/coupons                    - Available coupons
 ```
 
 ### Trainer Management Flow
@@ -874,6 +1429,15 @@ POST /api/v1/user/training-sessions/{id}/rating - Rate trainer session
 - [ ] Staff management and permissions
 - [ ] **Trainer management and scheduling**
 - [ ] **Training session monitoring**
+- [ ] **Diet plan management and meal planning**
+- [ ] **Workout plan creation and exercise library**
+- [ ] **Health information tracking**
+- [ ] **Equipment management and maintenance tracking**
+- [ ] **Locker allocation and management**
+- [ ] **Coupon and discount management**
+- [ ] **Review moderation and management**
+- [ ] **Staff leave request processing**
+- [ ] **Expense tracking and management**
 - [ ] Membership plan management
 - [ ] Lead inquiry management and approval
 - [ ] Payment tracking and management
@@ -891,6 +1455,11 @@ POST /api/v1/user/training-sessions/{id}/rating - Rate trainer session
 - [ ] **View trainer profiles and availability**
 - [ ] **Manage training sessions**
 - [ ] **Rate and review trainers**
+- [ ] **Diet plan tracking and progress**
+- [ ] **Workout plan management**
+- [ ] **Health information management**
+- [ ] **Locker assignment and management**
+- [ ] **Review and feedback system**
 - [ ] Membership renewal options
 - [ ] Contact support functionality
 
@@ -907,6 +1476,11 @@ POST /api/v1/user/training-sessions/{id}/rating - Rate trainer session
 - [ ] Error handling and logging
 - [ ] Background job processing
 - [ ] Email notifications
+- [ ] File upload system (images, documents)
+- [ ] Database seeding for initial data
+- [ ] Query optimization and indexing
+- [ ] Database backup and recovery
+- [ ] Caching system (Redis)
 
 #### Frontend Requirements
 - [ ] Next.js 14+ framework
@@ -919,6 +1493,12 @@ POST /api/v1/user/training-sessions/{id}/rating - Rate trainer session
 - [ ] Form validation
 - [ ] Error handling
 - [ ] Loading states and animations
+- [ ] Chart libraries (ApexCharts) for analytics
+- [ ] Image upload and preview
+- [ ] Real-time notifications
+- [ ] File upload functionality
+- [ ] Date and time pickers
+- [ ] Progress tracking components
 
 #### Payment Requirements
 - [ ] SSLCommerz integration
@@ -978,6 +1558,7 @@ POST /api/v1/user/training-sessions/{id}/rating - Rate trainer session
 - Node.js 18+
 - MySQL 8.0+
 - npm/yarn
+- Git
 
 ### Installation
 
@@ -1014,63 +1595,46 @@ POST /api/v1/user/training-sessions/{id}/rating - Rate trainer session
 
 ## 📝 API Documentation
 
-### Public Endpoints
+**📋 Complete API Reference**: See the [Complete API Endpoints](#complete-api-endpoints) section above for comprehensive API documentation including:
 
+- ✅ Laravel Route Structure with versioning
+- ✅ Admin Endpoints (Complete CRUD operations)
+- ✅ User Endpoints (Member functionality)
+- ✅ Public Endpoints (No authentication required)
+- ✅ All new features (Diet, Workout, Health, Equipment, Lockers, etc.)
+
+**🔐 Authentication**: All protected endpoints use Laravel Sanctum token authentication:
 ```
-GET  /api/v1/public/plans           - Get all membership plans
-POST /api/v1/public/inquiries       - Submit lead inquiry
-POST /api/v1/public/register        - Public registration
+Authorization: Bearer {token}
 ```
 
-### Admin Endpoints
+### Quick Reference
 
+#### Core Endpoints
 ```
+# Authentication
 POST   /api/v1/admin/login                  - Admin login
-GET    /api/v1/admin/members               - Get all members
-GET    /api/v1/admin/members/{id}          - Get member details
-POST   /api/v1/admin/members               - Create member
-PUT    /api/v1/admin/members/{id}          - Update member
-DELETE /api/v1/admin/members/{id}          - Delete member
-GET    /api/v1/admin/trainers              - Get all trainers
-GET    /api/v1/admin/trainers/{id}         - Get trainer details
-POST   /api/v1/admin/trainers              - Create trainer
-PUT    /api/v1/admin/trainers/{id}         - Update trainer
-DELETE /api/v1/admin/trainers/{id}         - Delete trainer
-GET    /api/v1/admin/trainers/{id}/schedule - Get trainer schedule
-PUT    /api/v1/admin/trainers/{id}/schedule - Update trainer schedule
-GET    /api/v1/admin/training-sessions     - Get all training sessions
-PUT    /api/v1/admin/training-sessions/{id} - Update session status
-GET    /api/v1/admin/plans                 - Get all plans
-POST   /api/v1/admin/plans                 - Create plan
-PUT    /api/v1/admin/plans/{id}            - Update plan
-DELETE /api/v1/admin/plans/{id}            - Delete plan
-GET    /api/v1/admin/payments              - Get all payments
-GET    /api/v1/admin/inquiries             - Get all inquiries
-PUT    /api/v1/admin/inquiries/{id}        - Update inquiry status
-GET    /api/v1/admin/reports/revenue       - Revenue report
-GET    /api/v1/admin/reports/attendance    - Attendance report
-GET    /api/v1/admin/reports/trainer-performance - Trainer performance report
+POST   /api/v1/user/login                   - User login
+
+# Public Access
+GET  /api/v1/public/plans                   - Membership plans
+POST /api/v1/public/inquiries               - Submit inquiry
+
+# Key Admin Operations
+GET    /api/v1/admin/members                - Member list
+POST   /api/v1/admin/members                - Create member
+GET    /api/v1/admin/trainers               - Trainer list
+POST   /api/v1/admin/trainers               - Create trainer
+GET    /api/v1/admin/reports/revenue        - Revenue reports
+
+# Key User Operations
+GET  /api/v1/user/profile                   - User profile
+GET  /api/v1/user/subscription              - Current subscription
+GET  /api/v1/user/trainers                  - Browse trainers
+POST /api/v1/user/training-sessions         - Book session
 ```
 
-### User Endpoints
-
-```
-POST /api/v1/user/login                  - User login
-GET  /api/v1/user/profile                - Get user profile
-PUT  /api/v1/user/profile                - Update profile
-GET  /api/v1/user/subscription           - Current subscription
-GET  /api/v1/user/payments               - Payment history
-GET  /api/v1/user/attendance             - Attendance history
-POST /api/v1/user/payments               - Make payment
-GET  /api/v1/user/trainers               - Browse available trainers
-GET  /api/v1/user/trainers/{id}          - Get trainer profile
-GET  /api/v1/user/trainers/{id}/availability - Check trainer availability
-GET  /api/v1/user/trainers/{id}/reviews - Get trainer reviews
-POST /api/v1/user/training-sessions     - Book training session
-GET  /api/v1/user/training-sessions     - Get my training sessions
-PUT  /api/v1/user/training-sessions/{id} - Update/cancel session
-POST /api/v1/user/training-sessions/{id}/rating - Rate trainer session
-```
+**📖 For detailed API documentation with all endpoints, see the [Complete API Endpoints](#complete-api-endpoints) section.**
 
 ## 🛠️ Technologies Used
 
@@ -1146,3 +1710,155 @@ For support, email support@gms.com or contact our team at +880 1234-567890
 - Admin: Comprehensive trainer management interface
 - User: Trainer discovery and booking system
 - Trainer: Personal schedule and session management interface
+
+---
+
+## 🎯 Summary: Complete Gym Management System
+
+### 🏗️ Architecture Overview
+
+**Technology Stack:**
+- **Backend**: Laravel 12 + MySQL 8.0 + Sanctum Auth
+- **Frontend**: Next.js 14+ + TypeScript + Tailwind CSS
+- **API**: RESTful with versioning (v1)
+- **Payment**: SSLCommerz Integration
+- **Database**: MySQL with comprehensive relationships
+
+### 📊 System Modules
+
+#### 1. **User Management**
+- Multi-role authentication (Admin, Staff, Trainer, Member)
+- Role-based access control
+- Profile management for all user types
+
+#### 2. **Membership System**
+- Membership plan management
+- Subscription tracking
+- Payment processing and invoicing
+- Lead inquiry management
+
+#### 3. **Training Management**
+- Trainer profiles and specialization
+- Schedule management and availability
+- Training session booking
+- Performance analytics and reporting
+
+#### 4. **Health & Nutrition**
+- Diet plan creation and assignment
+- Meal planning and calorie tracking
+- Progress monitoring
+- Health information management
+
+#### 5. **Workout System**
+- Workout plan creation
+- Exercise library management
+- Member workout tracking
+- Progress monitoring
+
+#### 6. **Facility Management**
+- Equipment tracking and maintenance
+- Locker allocation and management
+- Branch management
+- Staff leave management
+
+#### 7. **Financial Management**
+- Payment processing and tracking
+- Coupon and discount system
+- Expense management
+- Revenue reporting and analytics
+
+#### 8. **Communication System**
+- Review and feedback system
+- Email notifications
+- Inquiry management
+- Leave request processing
+
+### 🔐 Security Features
+
+- **Authentication**: Laravel Sanctum token-based auth
+- **Authorization**: Role-based access control (RBAC)
+- **API Security**: Rate limiting and input validation
+- **Data Protection**: Secure password hashing, SQL injection prevention
+- **HTTPS Support**: SSL/TLS encryption ready
+
+### 📈 Scalability & Performance
+
+- **Database Optimization**: Proper indexing and query optimization
+- **Caching**: Redis integration for performance
+- **Background Jobs**: Laravel Queue for heavy processing
+- **API Versioning**: Smooth migration path for future updates
+- **Load Balancing Ready**: Stateless API design
+
+### 🧪 Testing & Quality Assurance
+
+- **Backend**: PHPUnit for Laravel testing
+- **Frontend**: Jest for React component testing
+- **API Testing**: Postman collections for endpoint testing
+- **Integration Tests**: End-to-end workflow testing
+
+### 📱 User Experience
+
+- **Responsive Design**: Works on all devices
+- **Modern UI**: shadcn/ui components with Tailwind CSS
+- **Real-time Updates**: Instant notifications and updates
+- **Intuitive Navigation**: User-friendly interface design
+- **Accessibility**: WCAG compliance considerations
+
+### 🚀 Deployment Ready
+
+- **Environment Configuration**: Proper .env setup
+- **Database Migrations**: Version-controlled database schema
+- **API Documentation**: Comprehensive endpoint documentation
+- **Monitoring**: Laravel Telescope integration
+- **Backup Strategy**: Database and file backup procedures
+
+### 📊 Analytics & Reporting
+
+- **Revenue Analytics**: Income and expense tracking
+- **Attendance Reports**: Member participation metrics
+- **Trainer Performance**: Session completion and ratings
+- **Member Analytics**: Subscription trends and engagement
+- **Equipment Usage**: Facility utilization metrics
+
+---
+
+## 🎉 Project Status
+
+**✅ Documentation Complete**: All features documented with API endpoints, database schema, and implementation guidelines.
+
+**🔄 Ready for Development**: Clear structure and specifications for building a complete Gym Management System.
+
+**📈 Enterprise Ready**: Scalable architecture supporting growth and feature expansion.
+
+**🛡️ Production Ready**: Security, performance, and monitoring considerations included.
+
+---
+
+**Version**: 1.0.0  
+**Last Updated**: 2026-07-14  
+**Tech Stack**: Laravel 12 + Next.js 14 + MySQL  
+**Status**: Ready for Development 🚀
+
+---
+
+## 👥 Development Team
+
+- **Project Lead**: [Your Name]
+- **Backend Developer**: [Developer Name]  
+- **Frontend Developer**: [Developer Name]
+- **Database Designer**: [Designer Name]
+- **QA Engineer**: [QA Name]
+
+---
+
+## 📞 Support & Contact
+
+For technical support or questions about this project:
+- **Email**: support@gms.com
+- **Phone**: +880 1234-567890
+- **Documentation**: See above sections
+- **Issues**: Report via project management system
+
+---
+
+**Gym Management System (GMS)** - A complete solution for modern gym operations 🏋️‍♂️✨
