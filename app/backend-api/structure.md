@@ -19,11 +19,20 @@ Placeholder/empty files removed from repo (2026-07-15) to keep it clean. Full pl
 - `database/seeders/AdminSeeder.php` — seeds `admin@gms.test` / `password`
 - `database/seeders/DatabaseSeeder.php` — calls RolesSeeder → AdminSeeder
 - Package: `laravel/sanctum` installed via composer
-- `.env`, `database/database.sqlite`, app key generated — local dev DB ready (sqlite)
+- `.env` — DB switched to **MySQL** (`gms` database, `root`/`root` local), app key generated
+- `bootstrap/app.php` — `$exceptions->shouldRenderJsonWhen(...)` added so API exceptions render as JSON instead of HTML
+- `app/Providers/AppServiceProvider.php` — `Authenticate::redirectUsing(fn () => null)` so failed auth doesn't try to redirect to a non-existent `login` route (this API has none) and instead returns a clean 401 JSON
 
-Verified: `php artisan migrate:fresh --seed` runs clean. DB currently has only: `users`, `roles`, `permissions`, `permission_role`, `personal_access_tokens`, `cache`, `jobs` tables.
+Verified: `php artisan migrate:fresh --seed` runs clean against MySQL. DB currently has only: `users`, `roles`, `permissions`, `permission_role`, `personal_access_tokens`, `cache`, `jobs` tables.
 
-Not yet manually tested over HTTP: hitting `/api/v1/admin/login` and `/api/v1/user/login` — do this next (`php artisan serve` + curl/Postman) before trusting the endpoints end-to-end.
+Verified over HTTP (curl, port 8123) — all passing:
+- `POST /api/v1/admin/login` → 200, returns `user` + Sanctum `token`
+- `POST /api/v1/admin/logout` with `Authorization: Bearer <token>` → 200, revokes token
+- Reusing a revoked token → `401 {"message":"Unauthenticated."}` (was a 500 crash before the two fixes above)
+- Missing token on a protected route → `401 {"message":"Unauthenticated."}`
+- `POST /api/v1/user/login` with an `admin`-role account → `422 {"message":"Invalid credentials."}` (role mismatch correctly rejected)
+
+See `postman-api-test.md` for exact request bodies and how to create roles/permissions/users via `artisan tinker` (no CRUD API for these yet).
 
 **Not yet built:** register (public sign-up), password reset, profile endpoints, permission-based (as opposed to role-based) middleware, rate limiting on login.
 
