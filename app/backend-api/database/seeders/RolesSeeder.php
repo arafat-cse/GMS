@@ -15,6 +15,7 @@ class RolesSeeder extends Seeder
             'manage-staff',
             'manage-trainers',
             'manage-plans',
+            'manage-registrations',
             'view-payments',
             'manage-payments',
             'manage-settings',
@@ -28,7 +29,7 @@ class RolesSeeder extends Seeder
 
         $rolePermissions = [
             'admin' => $permissions,
-            'staff' => ['manage-members', 'view-payments', 'view-own-profile', 'manage-own-profile'],
+            'staff' => ['manage-members', 'manage-registrations', 'view-payments', 'view-own-profile', 'manage-own-profile'],
             'trainer' => ['view-own-profile', 'manage-own-profile'],
             'member' => ['view-own-profile', 'manage-own-profile'],
         ];
