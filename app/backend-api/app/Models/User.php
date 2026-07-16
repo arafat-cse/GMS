@@ -20,12 +20,23 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'phone',
         'password',
         'role',
+        'gender',
+        'blood_group',
+        'religion',
+        'nid_number',
+        'birth_certificate_number',
+        'emergency_contact_number',
+        'date_of_birth',
+        'joining_date',
     ];
+
+    protected $appends = ['name'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -47,7 +58,14 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'date_of_birth' => 'date',
+            'joining_date' => 'date',
         ];
+    }
+
+    public function getNameAttribute(): string
+    {
+        return trim("{$this->first_name} {$this->last_name}");
     }
 
     public function hasRole(string ...$roles): bool

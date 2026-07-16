@@ -22,10 +22,19 @@ class StaffController extends Controller
 
         $staff = DB::transaction(function () use ($data) {
             $user = User::create([
-                'name' => $data['name'],
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'role' => 'staff',
+                'gender' => $data['gender'] ?? null,
+                'blood_group' => $data['blood_group'] ?? null,
+                'religion' => $data['religion'] ?? null,
+                'nid_number' => $data['nid_number'] ?? null,
+                'birth_certificate_number' => $data['birth_certificate_number'] ?? null,
+                'emergency_contact_number' => $data['emergency_contact_number'] ?? null,
+                'date_of_birth' => $data['date_of_birth'] ?? null,
+                'joining_date' => $data['joining_date'] ?? null,
             ]);
 
             return Staff::create([
@@ -50,9 +59,18 @@ class StaffController extends Controller
 
         DB::transaction(function () use ($data, $staff) {
             $userUpdate = array_filter([
-                'name' => $data['name'] ?? null,
+                'first_name' => $data['first_name'] ?? null,
+                'last_name' => $data['last_name'] ?? null,
                 'email' => $data['email'] ?? null,
                 'password' => isset($data['password']) ? Hash::make($data['password']) : null,
+                'gender' => $data['gender'] ?? null,
+                'blood_group' => $data['blood_group'] ?? null,
+                'religion' => $data['religion'] ?? null,
+                'nid_number' => $data['nid_number'] ?? null,
+                'birth_certificate_number' => $data['birth_certificate_number'] ?? null,
+                'emergency_contact_number' => $data['emergency_contact_number'] ?? null,
+                'date_of_birth' => $data['date_of_birth'] ?? null,
+                'joining_date' => $data['joining_date'] ?? null,
             ]);
 
             if ($userUpdate) {

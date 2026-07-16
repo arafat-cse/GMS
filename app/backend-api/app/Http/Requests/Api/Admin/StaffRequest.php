@@ -19,22 +19,40 @@ class StaffRequest extends FormRequest
 
         if ($this->isMethod('post')) {
             return [
-                'name' => ['required', 'string', 'max:255'],
+                'first_name' => ['required', 'string', 'max:255'],
+                'last_name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'email', 'unique:users,email'],
                 'password' => ['required', 'string', 'min:6'],
                 'branch_id' => ['nullable', 'exists:branches,id'],
                 'designation' => ['nullable', 'string', 'max:255'],
                 'status' => ['sometimes', 'in:active,inactive,on_leave'],
+                'gender' => ['nullable', 'in:male,female,other'],
+                'blood_group' => ['nullable', 'string', 'max:10'],
+                'religion' => ['nullable', 'string', 'max:100'],
+                'nid_number' => ['nullable', 'string', 'max:50'],
+                'birth_certificate_number' => ['nullable', 'string', 'max:50'],
+                'emergency_contact_number' => ['nullable', 'string', 'max:30'],
+                'date_of_birth' => ['nullable', 'date'],
+                'joining_date' => ['nullable', 'date'],
             ];
         }
 
         return [
-            'name' => ['sometimes', 'string', 'max:255'],
+            'first_name' => ['sometimes', 'string', 'max:255'],
+            'last_name' => ['sometimes', 'string', 'max:255'],
             'email' => ['sometimes', 'email', Rule::unique('users', 'email')->ignore($userId)],
             'password' => ['sometimes', 'string', 'min:6'],
             'branch_id' => ['nullable', 'exists:branches,id'],
             'designation' => ['nullable', 'string', 'max:255'],
             'status' => ['sometimes', 'in:active,inactive,on_leave'],
+            'gender' => ['nullable', 'in:male,female,other'],
+            'blood_group' => ['nullable', 'string', 'max:10'],
+            'religion' => ['nullable', 'string', 'max:100'],
+            'nid_number' => ['nullable', 'string', 'max:50'],
+            'birth_certificate_number' => ['nullable', 'string', 'max:50'],
+            'emergency_contact_number' => ['nullable', 'string', 'max:30'],
+            'date_of_birth' => ['nullable', 'date'],
+            'joining_date' => ['nullable', 'date'],
         ];
     }
 }
