@@ -13,7 +13,8 @@ class AdminSeeder extends Seeder
         User::firstOrCreate(
             ['email' => 'admin@gms.test'],
             [
-                'name' => 'Super Admin',
+                'first_name' => 'Super',
+                'last_name' => 'Admin',
                 'password' => Hash::make('password'),
                 'role' => 'admin',
             ]

@@ -6,17 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('member_registrations', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('phone')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('role', ['admin', 'staff', 'trainer', 'member'])->default('member');
+            $table->string('address')->nullable();
+            $table->foreignId('branch_id')->nullable()->constrained()->nullOnDelete();
             $table->enum('gender', ['male', 'female', 'other'])->nullable();
             $table->string('blood_group')->nullable();
             $table->string('religion')->nullable();
@@ -25,13 +28,19 @@ return new class extends Migration
             $table->string('emergency_contact_number')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->date('joining_date')->nullable();
-            $table->rememberToken();
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->text('rejection_reason')->nullable();
+            $table->foreignId('approved_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->timestamp('approved_at')->nullable();
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('member_registrations');
     }
 };
