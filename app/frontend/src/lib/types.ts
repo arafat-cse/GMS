@@ -40,3 +40,89 @@ export type Member = {
   user: UserProfile;
   branch: Branch | null;
 };
+
+export type MembershipPlan = {
+  id: number;
+  name: string;
+  description: string | null;
+  price: string;
+  duration_in_days: number;
+  features: string[] | null;
+  status: "active" | "inactive";
+};
+
+export type MemberRegistration = {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string | null;
+  address: string | null;
+  branch_id: number | null;
+  status: "pending" | "approved" | "rejected";
+  rejection_reason: string | null;
+  created_at: string;
+  branch: Branch | null;
+};
+
+export type PaymentNumber = {
+  id: number;
+  method: "bkash" | "nagad";
+  number: string;
+  label: string | null;
+  is_active: boolean;
+};
+
+export type Payment = {
+  id: number;
+  member_registration_id: number;
+  membership_plan_id: number;
+  method: "bkash" | "nagad";
+  sender_number: string;
+  transaction_id: string;
+  amount: string;
+  screenshot_path: string | null;
+  screenshot_url: string | null;
+  status: "pending" | "approved" | "rejected";
+  rejection_reason: string | null;
+  approved_at: string | null;
+  created_at: string;
+  member_registration: MemberRegistration;
+  membership_plan: MembershipPlan;
+};
+
+export type Subscription = {
+  id: number;
+  member_id: number;
+  membership_plan_id: number;
+  price_paid: string;
+  start_date: string;
+  end_date: string;
+  status: "pending" | "active" | "expired" | "cancelled";
+  notes: string | null;
+  member: Member;
+  membership_plan: MembershipPlan;
+};
+
+export type Coupon = {
+  id: number;
+  code: string;
+  type: "percentage" | "fixed";
+  discount: string;
+  min_order: string | null;
+  max_uses: number | null;
+  used_count: number;
+  expires_at: string | null;
+  status: "active" | "inactive";
+};
+
+export type Discount = {
+  id: number;
+  coupon_id: number;
+  member_registration_id: number;
+  payment_id: number | null;
+  amount: string;
+  used_at: string;
+  coupon: Coupon;
+  member_registration: MemberRegistration;
+};
