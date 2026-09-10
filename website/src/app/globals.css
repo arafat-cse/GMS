@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    color-scheme: dark;
     --background: oklch(0.165 0.005 285);
     --foreground: oklch(0.985 0 0);
     --card: oklch(0.213 0.006 285);

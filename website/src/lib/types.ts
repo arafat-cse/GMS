@@ -12,3 +12,10 @@ export type Trainer = {
   name: string;
   designation: string | null;
 };
+
+export type PaymentNumber = {
+  id: number;
+  method: "bkash" | "nagad";
+  number: string;
+  label: string | null;
+};

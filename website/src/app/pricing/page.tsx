@@ -63,7 +63,6 @@ export default async function PricingPage() {
                     key={plan.id}
                     plan={plan}
                     highlighted={i === highlightedIndex}
-                    ctaHref="/pricing#contact"
                   />
                 ))}
               </div>

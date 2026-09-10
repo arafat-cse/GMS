@@ -1,17 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import {
-  ArrowRight,
-  CalendarCheck,
-  Dumbbell,
-  HeartPulse,
-  ShieldCheck,
-  Sparkles,
-  Star,
-  Timer,
-  Users,
-} from "lucide-react";
+import { ArrowRight, CalendarCheck, Sparkles, Star } from "lucide-react";
 
 import { publicApi } from "@/lib/api";
 import type { MembershipPlan, Trainer } from "@/lib/types";
@@ -31,64 +21,6 @@ export const metadata: Metadata = {
 };
 
 export const dynamic = "force-dynamic";
-
-const FEATURES = [
-  {
-    icon: Dumbbell,
-    title: "Modern Equipment",
-    description:
-      "Strength, cardio, and functional training gear kept in top condition.",
-  },
-  {
-    icon: Users,
-    title: "Expert Trainers",
-    description:
-      "Certified coaches who build programs around your actual goals.",
-  },
-  {
-    icon: CalendarCheck,
-    title: "Flexible Scheduling",
-    description:
-      "Book sessions that fit your life — mornings, evenings, or weekends.",
-  },
-  {
-    icon: HeartPulse,
-    title: "Progress You Can See",
-    description: "Track sessions, ratings, and milestones as you move forward.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Safe, Clean Spaces",
-    description:
-      "Hygienic facilities and equipment maintained to a high standard.",
-  },
-  {
-    icon: Timer,
-    title: "No Long Contracts",
-    description: "Simple monthly plans — upgrade, pause, or cancel anytime.",
-  },
-];
-
-const TESTIMONIALS = [
-  {
-    name: "Tanvir A.",
-    role: "Member since 2025",
-    quote:
-      "The trainers actually pay attention. I went from skipping workouts to looking forward to them every week.",
-  },
-  {
-    name: "Farzana R.",
-    role: "Gold Plan member",
-    quote:
-      "Clean facility, flexible hours, and booking a session takes seconds. Exactly what I needed.",
-  },
-  {
-    name: "Imran K.",
-    role: "Platinum Plan member",
-    quote:
-      "Unlimited sessions changed my routine completely. Best fitness decision I've made.",
-  },
-];
 
 export default async function HomePage() {
   const [plans, trainers] = await Promise.all([
@@ -130,7 +62,7 @@ export default async function HomePage() {
               </p>
               <div className="flex flex-wrap gap-4 pt-2">
                 <Link
-                  href="/pricing"
+                  href="/register"
                   className={
                     buttonVariants({ size: "lg" }) +
                     " px-8 font-bold uppercase tracking-wider text-xs py-6"
@@ -292,55 +224,6 @@ export default async function HomePage() {
           </section>
         ) : null}
 
-        {/* Testimonials */}
-        <section
-          className={
-            "py-20 relative" +
-            (trainerCount > 0 ? "" : " border-t border-border/40 bg-card/20")
-          }
-        >
-          {/* <div className="container grid gap-12">
-            <SectionHeading
-              eyebrow="Member Stories"
-              title="Real people, real progress"
-            />
-            <div className="grid gap-6 md:grid-cols-3">
-              {TESTIMONIALS.map((t) => (
-                <Card
-                  key={t.name}
-                  className="glass-card glow-hover border-border/60"
-                >
-                  <CardContent className="grid gap-4 pt-6">
-                    <div className="flex gap-0.5 text-primary">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star
-                          key={i}
-                          className="size-4 fill-primary text-primary"
-                        />
-                      ))}
-                    </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed italic">
-                      &ldquo;{t.quote}&rdquo;
-                    </p>
-                    <div className="flex items-center gap-3 pt-2">
-                      <span className="flex size-10 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-xs font-bold text-primary">
-                        {t.name
-                          .split(" ")
-                          .map((p) => p[0])
-                          .join("")}
-                      </span>
-                      <div>
-                        <p className="text-sm font-bold">{t.name}</p>
-                        <p className="text-xs text-muted-foreground">{t.role}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div> */}
-        </section>
-
         {/* CTA */}
         {/* <section className="pb-20 relative">
           <div className="container">
@@ -359,7 +242,7 @@ export default async function HomePage() {
                 </p>
                 <div className="flex flex-wrap justify-center gap-4 pt-4">
                   <Link
-                    href="/pricing"
+                    href="/register"
                     className={
                       buttonVariants({ size: "lg" }) +
                       " px-8 font-bold uppercase tracking-wider text-xs py-6"

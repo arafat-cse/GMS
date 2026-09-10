@@ -25,14 +25,9 @@ const DURATION_LABELS: Record<number, string> = {
 type PricingCardProps = {
   plan: MembershipPlan;
   highlighted?: boolean;
-  ctaHref?: string;
 };
 
-export function PricingCard({
-  plan,
-  highlighted = false,
-  ctaHref = "/pricing",
-}: PricingCardProps) {
+export function PricingCard({ plan, highlighted = false }: PricingCardProps) {
   const durationLabel =
     DURATION_LABELS[plan.duration_in_days] ??
     `for ${plan.duration_in_days} days`;
@@ -83,7 +78,7 @@ export function PricingCard({
       </CardContent>
       <CardFooter className="justify-center">
         <Link
-          href={ctaHref}
+          href={`/register?plan=${plan.id}`}
           className={cn(
             buttonVariants({
               variant: highlighted ? "default" : "outline",

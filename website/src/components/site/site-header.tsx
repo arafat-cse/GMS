@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Dumbbell } from "lucide-react";
 
+import { buttonVariants } from "@/components/ui/button";
+
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/pricing", label: "Plans" },
@@ -24,11 +26,20 @@ export function SiteHeader() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-xs font-bold uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
+              className="hidden text-xs font-bold uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground sm:block"
             >
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/register"
+            className={
+              buttonVariants({ size: "sm" }) +
+              " font-bold uppercase tracking-wider"
+            }
+          >
+            Join Now
+          </Link>
         </nav>
       </div>
     </header>
