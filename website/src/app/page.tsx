@@ -1,137 +1,386 @@
-import { ArrowRight, Clock, MapPin, Phone } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import type { Metadata } from "next";
+import {
+  ArrowRight,
+  CalendarCheck,
+  Dumbbell,
+  HeartPulse,
+  ShieldCheck,
+  Sparkles,
+  Star,
+  Timer,
+  Users,
+} from "lucide-react";
 
 import { publicApi } from "@/lib/api";
-import type { MembershipPlan } from "@/lib/types";
+import type { MembershipPlan, Trainer } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SectionHeading } from "@/components/site/section-heading";
 import { PricingCard } from "@/components/site/pricing-card";
+import { TrainerCard } from "@/components/site/trainer-card";
+
+export const metadata: Metadata = {
+  title: "PulseFit Gym — Train Smarter. Live Stronger.",
+  description:
+    "Elite personal coaching, state-of-the-art training spaces, and simple membership plans — everything you need to stay consistent.",
+};
 
 export const dynamic = "force-dynamic";
 
-export default async function PlansPage() {
-  const plans = await publicApi<MembershipPlan[]>("/plans");
+const FEATURES = [
+  {
+    icon: Dumbbell,
+    title: "Modern Equipment",
+    description:
+      "Strength, cardio, and functional training gear kept in top condition.",
+  },
+  {
+    icon: Users,
+    title: "Expert Trainers",
+    description:
+      "Certified coaches who build programs around your actual goals.",
+  },
+  {
+    icon: CalendarCheck,
+    title: "Flexible Scheduling",
+    description:
+      "Book sessions that fit your life — mornings, evenings, or weekends.",
+  },
+  {
+    icon: HeartPulse,
+    title: "Progress You Can See",
+    description: "Track sessions, ratings, and milestones as you move forward.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Safe, Clean Spaces",
+    description:
+      "Hygienic facilities and equipment maintained to a high standard.",
+  },
+  {
+    icon: Timer,
+    title: "No Long Contracts",
+    description: "Simple monthly plans — upgrade, pause, or cancel anytime.",
+  },
+];
 
-  const highlightedIndex =
-    plans && plans.length >= 3 ? 1 : plans && plans.length > 0 ? 0 : -1;
+const TESTIMONIALS = [
+  {
+    name: "Tanvir A.",
+    role: "Member since 2025",
+    quote:
+      "The trainers actually pay attention. I went from skipping workouts to looking forward to them every week.",
+  },
+  {
+    name: "Farzana R.",
+    role: "Gold Plan member",
+    quote:
+      "Clean facility, flexible hours, and booking a session takes seconds. Exactly what I needed.",
+  },
+  {
+    name: "Imran K.",
+    role: "Platinum Plan member",
+    quote:
+      "Unlimited sessions changed my routine completely. Best fitness decision I've made.",
+  },
+];
+
+export default async function HomePage() {
+  const [plans, trainers] = await Promise.all([
+    publicApi<MembershipPlan[]>("/plans"),
+    publicApi<Trainer[]>("/trainers"),
+  ]);
+
+  const previewPlans = (plans ?? []).slice(0, 3);
+  const previewTrainers = (trainers ?? []).slice(0, 4);
+  const planCount = plans?.length ?? 0;
+  const trainerCount = trainers?.length ?? 0;
 
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
 
       <main className="flex-1">
-        <section id="plans" className="relative overflow-hidden py-16 sm:py-24">
-          <div className="absolute top-[-10%] left-1/2 -z-10 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px]" />
-          <div className="container grid gap-14">
-            <SectionHeading
-              eyebrow="Membership Plans"
-              title="Pick the plan that fits your grind"
-              description="Simple, transparent pricing — no hidden fees, no long contracts. Upgrade or switch anytime."
-            />
+        {/* Hero */}
+        <section className="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-28">
+          <div className="absolute top-[10%] left-[-10%] -z-10 h-[600px] w-[600px] rounded-full bg-primary/5 blur-[130px]" />
+          <div className="absolute top-[40%] right-[-10%] -z-10 h-[500px] w-[500px] rounded-full bg-primary/5 blur-[120px]" />
 
-            {plans === null ? (
-              <p className="mx-auto max-w-md rounded-2xl border border-border/60 bg-card/40 px-6 py-8 text-center text-sm text-muted-foreground">
-                We couldn&apos;t load our plans right now. Please try again in a
-                few minutes.
+          <div className="container grid items-center gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-7 grid gap-6 text-left">
+              <Badge className="w-fit">
+                <Sparkles className="size-3 animate-pulse" />
+                Now enrolling for{" "}
+                {new Date().toLocaleString("en-US", { month: "long" })}
+              </Badge>
+              <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] text-balance">
+                Train <span className="text-primary text-glow font-black">smarter.</span>
+                <br />
+                Live <span className="text-primary text-glow font-black">stronger.</span>
+              </h1>
+              <p className="max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed">
+                PulseFit combines elite personal coaching, state-of-the-art
+                training spaces, and a results-driven community to help you
+                achieve your ultimate fitness goals.
               </p>
-            ) : plans.length === 0 ? (
-              <p className="mx-auto max-w-md rounded-2xl border border-border/60 bg-card/40 px-6 py-8 text-center text-sm text-muted-foreground">
-                Plans are being updated — check back shortly.
-              </p>
-            ) : (
-              <div
-                className={
-                  plans.length === 1
-                    ? "grid gap-6 md:grid-cols-2 lg:mx-auto lg:max-w-md lg:grid-cols-1"
-                    : plans.length === 2
-                      ? "grid items-center gap-6 md:grid-cols-2 lg:max-w-2xl lg:mx-auto"
-                      : "grid items-center gap-6 md:grid-cols-2 lg:grid-cols-3"
-                }
-              >
-                {plans.map((plan, i) => (
-                  <PricingCard
-                    key={plan.id}
-                    plan={plan}
-                    highlighted={i === highlightedIndex}
-                  />
-                ))}
+              <div className="flex flex-wrap gap-4 pt-2">
+                <Link
+                  href="/pricing"
+                  className={
+                    buttonVariants({ size: "lg" }) +
+                    " px-8 font-bold uppercase tracking-wider text-xs py-6"
+                  }
+                >
+                  Get Started Now <ArrowRight className="size-4" />
+                </Link>
+                <Link
+                  href="/pricing"
+                  className={
+                    buttonVariants({ variant: "secondary", size: "lg" }) +
+                    " px-8 font-bold uppercase tracking-wider text-xs py-6"
+                  }
+                >
+                  Explore Plans
+                </Link>
               </div>
-            )}
 
-            <div className="flex flex-col items-center gap-2 text-center">
-              <p className="text-xs uppercase tracking-wider text-muted-foreground">
-                All plans include locker access & free WiFi
-              </p>
+              <div className="flex flex-wrap items-center gap-8 pt-6 border-t border-border/40 mt-4">
+                {trainerCount > 0 ? (
+                  <>
+                    <div>
+                      <p className="text-3xl font-black text-glow">
+                        {trainerCount}+
+                      </p>
+                      <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mt-0.5">
+                        Elite Coaches
+                      </p>
+                    </div>
+                    <div className="hidden sm:block h-10 w-px bg-border/40" />
+                  </>
+                ) : null}
+                <div>
+                  <p className="text-3xl font-black text-glow">{planCount}</p>
+                  <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mt-0.5">
+                    Flexible Tiers
+                  </p>
+                </div>
+                <div className="hidden sm:block h-10 w-px bg-border/40" />
+                <div>
+                  <p className="flex items-center gap-1.5 text-3xl font-black text-glow">
+                    4.9 <Star className="size-5 fill-primary text-primary" />
+                  </p>
+                  <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mt-0.5">
+                    Member Rating
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 relative">
+              <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-tr from-primary to-primary/40 opacity-20 blur-2xl -z-10" />
+              <div className="relative overflow-hidden rounded-3xl border border-border/60 shadow-2xl bg-card">
+                <Image
+                  src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&q=80&w=900&h=1100"
+                  alt="Athlete training at PulseFit Gym"
+                  width={900}
+                  height={1100}
+                  priority
+                  className="aspect-[4/5] w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-transparent to-transparent" />
+              </div>
+
+              <Card className="absolute -bottom-6 -left-6 hidden w-64 shadow-2xl border-primary/20 glass-card sm:block z-10">
+                <CardContent className="flex items-center gap-3.5 p-4">
+                  <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-glow">
+                    <CalendarCheck className="size-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-muted-foreground">
+                      Pulse Session
+                    </p>
+                    <p className="text-sm font-bold">Next class: Today, 6:00 PM</p>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
 
-        <section
-          id="contact"
-          className="relative overflow-hidden border-t border-border/40 bg-card/25 py-16 sm:py-20"
-        >
-          <div className="container grid items-center gap-12 lg:grid-cols-2">
-            <div className="grid max-w-2xl gap-5 lg:max-w-none">
-              <Badge className="w-fit">Get Started</Badge>
-              <h2 className="text-3xl font-extrabold tracking-tight text-balance sm:text-4xl">
-                Ready to join PulseFit?
-              </h2>
-              <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-                Drop by the front desk or give us a call — we&apos;ll match you
-                with the right plan and get you moving the same day.
-              </p>
-              <div>
-                <Link
-                  href="/#plans"
-                  className={
-                    buttonVariants({ size: "lg" }) +
-                    " font-bold uppercase tracking-wider text-xs"
-                  }
+        {/* Features */}
+        {/* <section className="border-y border-border/40 bg-card/20 py-20 relative">
+          <div className="container grid gap-12">
+            <SectionHeading
+              eyebrow="Why PulseFit"
+              title="Everything you need to stay consistent"
+              description="We remove the friction between you and your workout — good equipment, real coaching, and a schedule that bends to your life."
+            />
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {FEATURES.map((feature) => (
+                <Card
+                  key={feature.title}
+                  className="glass-card glow-hover border-border/40"
                 >
-                  See Plans <ArrowRight className="size-4" />
-                </Link>
-              </div>
-            </div>
-
-            <div className="grid gap-4">
-              {[
-                {
-                  icon: MapPin,
-                  label: "Location",
-                  value: "Sector 7, Uttara, Dhaka 1230",
-                },
-                {
-                  icon: Clock,
-                  label: "Open Hours",
-                  value: "Sat–Thu: 6:00 AM – 11:00 PM · Fri: 3:00 PM – 11:00 PM",
-                },
-                {
-                  icon: Phone,
-                  label: "Call Us",
-                  value: "+880 1700-000000",
-                },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="glass-card glow-hover flex items-center gap-4 rounded-2xl border border-border/60 p-5"
-                >
-                  <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <item.icon className="size-5" />
-                  </span>
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                      {item.label}
+                  <CardContent className="grid gap-3 pt-6">
+                    <div className="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <feature.icon className="size-5" />
+                    </div>
+                    <h3 className="font-bold text-lg">{feature.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {feature.description}
                     </p>
-                    <p className="text-sm font-semibold">{item.value}</p>
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>
         </section>
+
+        {/* Pricing preview */}
+        <section className="py-20 relative">
+          <div className="container grid gap-12">
+            <SectionHeading
+              eyebrow="Membership"
+              title="Simple plans, no surprises"
+              description="Pick a plan that matches your goals. Switch or cancel anytime."
+            />
+            {previewPlans.length > 0 ? (
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-center">
+                {previewPlans.map((plan, i) => (
+                  <PricingCard key={plan.id} plan={plan} highlighted={i === 1} />
+                ))}
+              </div>
+            ) : (
+              <p className="text-center text-sm text-muted-foreground">
+                Plans are being updated — check back shortly.
+              </p>
+            )}
+            <div className="flex justify-center mt-4">
+              <Link
+                href="/pricing"
+                className={
+                  buttonVariants({ variant: "outline" }) +
+                  " font-bold uppercase tracking-wider text-xs px-6 py-5"
+                }
+              >
+                See all plans <ArrowRight className="size-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Team preview */}
+        {trainerCount > 0 ? (
+          <section className="border-t border-border/40 bg-card/20 py-20 relative">
+            <div className="container grid gap-12">
+              <SectionHeading
+                eyebrow="Our Team"
+                title="Coaches who actually coach"
+                description="Certified trainers across strength, yoga, and functional fitness — ready to build a plan around you."
+              />
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                {previewTrainers.map((trainer) => (
+                  <TrainerCard key={trainer.id} trainer={trainer} />
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
+
+        {/* Testimonials */}
+        <section
+          className={
+            "py-20 relative" +
+            (trainerCount > 0 ? "" : " border-t border-border/40 bg-card/20")
+          }
+        >
+          {/* <div className="container grid gap-12">
+            <SectionHeading
+              eyebrow="Member Stories"
+              title="Real people, real progress"
+            />
+            <div className="grid gap-6 md:grid-cols-3">
+              {TESTIMONIALS.map((t) => (
+                <Card
+                  key={t.name}
+                  className="glass-card glow-hover border-border/60"
+                >
+                  <CardContent className="grid gap-4 pt-6">
+                    <div className="flex gap-0.5 text-primary">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star
+                          key={i}
+                          className="size-4 fill-primary text-primary"
+                        />
+                      ))}
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed italic">
+                      &ldquo;{t.quote}&rdquo;
+                    </p>
+                    <div className="flex items-center gap-3 pt-2">
+                      <span className="flex size-10 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-xs font-bold text-primary">
+                        {t.name
+                          .split(" ")
+                          .map((p) => p[0])
+                          .join("")}
+                      </span>
+                      <div>
+                        <p className="text-sm font-bold">{t.name}</p>
+                        <p className="text-xs text-muted-foreground">{t.role}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div> */}
+        </section>
+
+        {/* CTA */}
+        {/* <section className="pb-20 relative">
+          <div className="container">
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-card to-card/60 border border-border p-8 md:p-14 text-center shadow-2xl">
+              <div className="absolute bottom-0 right-0 -z-10 h-64 w-64 rounded-full bg-primary/10 blur-[80px]" />
+              <div className="absolute top-0 left-0 -z-10 h-64 w-64 rounded-full bg-primary/5 blur-[80px]" />
+
+              <div className="relative z-10 max-w-2xl mx-auto grid gap-6">
+                <Badge className="mx-auto w-fit">Join the PulseFit Tribe</Badge>
+                <h2 className="text-3xl font-extrabold sm:text-5xl tracking-tight">
+                  Ready to start your journey?
+                </h2>
+                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                  Join PulseFit today and get matched with a plan and trainer
+                  that fits your goals — no long-term contracts.
+                </p>
+                <div className="flex flex-wrap justify-center gap-4 pt-4">
+                  <Link
+                    href="/pricing"
+                    className={
+                      buttonVariants({ size: "lg" }) +
+                      " px-8 font-bold uppercase tracking-wider text-xs py-6"
+                    }
+                  >
+                    Join Now <ArrowRight className="size-4" />
+                  </Link>
+                  <Link
+                    href="/pricing#contact"
+                    className={
+                      buttonVariants({ variant: "outline", size: "lg" }) +
+                      " px-8 font-bold uppercase tracking-wider text-xs py-6"
+                    }
+                  >
+                    Talk to Us
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section> */}
       </main>
 
       <SiteFooter />

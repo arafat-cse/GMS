@@ -6,3 +6,9 @@ export type MembershipPlan = {
   duration_in_days: number;
   features: string[] | null;
 };
+
+export type Trainer = {
+  id: number;
+  name: string;
+  designation: string | null;
+};

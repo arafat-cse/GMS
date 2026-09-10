@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\V1\Public\PaymentController as PublicPaymentControl
 use App\Http\Controllers\Api\V1\Public\PaymentNumberController as PublicPaymentNumberController;
 use App\Http\Controllers\Api\V1\Public\PlanController as PublicPlanController;
 use App\Http\Controllers\Api\V1\Public\RegistrationController;
+use App\Http\Controllers\Api\V1\Public\TrainerController as PublicTrainerController;
 use App\Http\Controllers\Api\V1\User\AuthController as UserAuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,7 @@ Route::prefix('v1')->group(function () {
 
     Route::post('/register', [RegistrationController::class, 'store']);
     Route::get('/plans', [PublicPlanController::class, 'index']);
+    Route::get('/trainers', [PublicTrainerController::class, 'index']);
     Route::get('/payment-numbers', [PublicPaymentNumberController::class, 'index']);
     Route::get('/coupons/validate', [PublicCouponController::class, 'validateCode']);
     Route::post('/registrations/{memberRegistration}/payments', [PublicPaymentController::class, 'store']);

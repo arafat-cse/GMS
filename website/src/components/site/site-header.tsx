@@ -2,8 +2,9 @@ import Link from "next/link";
 import { Dumbbell } from "lucide-react";
 
 const NAV_LINKS = [
-  { href: "/#plans", label: "Plans" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/", label: "Home" },
+  { href: "/pricing", label: "Plans" },
+  { href: "/pricing#contact", label: "Contact" },
 ];
 
 export function SiteHeader() {
