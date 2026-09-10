@@ -2,26 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: oklch(0.165 0.005 285);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.213 0.006 285);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.213 0.006 285);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.84 0.19 142);
+    --primary-foreground: oklch(0.19 0.03 142);
+    --secondary: oklch(0.27 0.007 285);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.27 0.007 285);
+    --muted-foreground: oklch(0.712 0.007 285);
+    --accent: oklch(0.27 0.007 285);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --destructive-foreground: oklch(0.985 0 0);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.84 0.19 142);
+    --radius: 0.75rem;
   }
-}
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-geist-sans), system-ui, sans-serif;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 24px color-mix(in oklch, var(--primary) 55%, transparent);
+  }
+
+  .glass-card {
+    background: color-mix(in oklch, var(--card) 60%, transparent);
+    backdrop-filter: blur(10px);
+  }
+
+  .glow-hover {
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .glow-hover:hover {
+    border-color: color-mix(in oklch, var(--primary) 35%, transparent);
+    box-shadow: 0 0 36px -12px
+      color-mix(in oklch, var(--primary) 45%, transparent);
+    transform: translateY(-2px);
   }
 }

@@ -1,101 +1,140 @@
-import Image from "next/image";
+import { ArrowRight, Clock, MapPin, Phone } from "lucide-react";
 
-export default function Home() {
+import { publicApi } from "@/lib/api";
+import type { MembershipPlan } from "@/lib/types";
+import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
+import { SiteHeader } from "@/components/site/site-header";
+import { SiteFooter } from "@/components/site/site-footer";
+import { SectionHeading } from "@/components/site/section-heading";
+import { PricingCard } from "@/components/site/pricing-card";
+
+export const dynamic = "force-dynamic";
+
+export default async function PlansPage() {
+  const plans = await publicApi<MembershipPlan[]>("/plans");
+
+  const highlightedIndex =
+    plans && plans.length >= 3 ? 1 : plans && plans.length > 0 ? 0 : -1;
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="flex min-h-screen flex-col">
+      <SiteHeader />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+      <main className="flex-1">
+        <section id="plans" className="relative overflow-hidden py-16 sm:py-24">
+          <div className="absolute top-[-10%] left-1/2 -z-10 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px]" />
+          <div className="container grid gap-14">
+            <SectionHeading
+              eyebrow="Membership Plans"
+              title="Pick the plan that fits your grind"
+              description="Simple, transparent pricing — no hidden fees, no long contracts. Upgrade or switch anytime."
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+
+            {plans === null ? (
+              <p className="mx-auto max-w-md rounded-2xl border border-border/60 bg-card/40 px-6 py-8 text-center text-sm text-muted-foreground">
+                We couldn&apos;t load our plans right now. Please try again in a
+                few minutes.
+              </p>
+            ) : plans.length === 0 ? (
+              <p className="mx-auto max-w-md rounded-2xl border border-border/60 bg-card/40 px-6 py-8 text-center text-sm text-muted-foreground">
+                Plans are being updated — check back shortly.
+              </p>
+            ) : (
+              <div
+                className={
+                  plans.length === 1
+                    ? "grid gap-6 md:grid-cols-2 lg:mx-auto lg:max-w-md lg:grid-cols-1"
+                    : plans.length === 2
+                      ? "grid items-center gap-6 md:grid-cols-2 lg:max-w-2xl lg:mx-auto"
+                      : "grid items-center gap-6 md:grid-cols-2 lg:grid-cols-3"
+                }
+              >
+                {plans.map((plan, i) => (
+                  <PricingCard
+                    key={plan.id}
+                    plan={plan}
+                    highlighted={i === highlightedIndex}
+                  />
+                ))}
+              </div>
+            )}
+
+            <div className="flex flex-col items-center gap-2 text-center">
+              <p className="text-xs uppercase tracking-wider text-muted-foreground">
+                All plans include locker access & free WiFi
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="contact"
+          className="relative overflow-hidden border-t border-border/40 bg-card/25 py-16 sm:py-20"
+        >
+          <div className="container grid items-center gap-12 lg:grid-cols-2">
+            <div className="grid max-w-2xl gap-5 lg:max-w-none">
+              <Badge className="w-fit">Get Started</Badge>
+              <h2 className="text-3xl font-extrabold tracking-tight text-balance sm:text-4xl">
+                Ready to join PulseFit?
+              </h2>
+              <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+                Drop by the front desk or give us a call — we&apos;ll match you
+                with the right plan and get you moving the same day.
+              </p>
+              <div>
+                <Link
+                  href="/#plans"
+                  className={
+                    buttonVariants({ size: "lg" }) +
+                    " font-bold uppercase tracking-wider text-xs"
+                  }
+                >
+                  See Plans <ArrowRight className="size-4" />
+                </Link>
+              </div>
+            </div>
+
+            <div className="grid gap-4">
+              {[
+                {
+                  icon: MapPin,
+                  label: "Location",
+                  value: "Sector 7, Uttara, Dhaka 1230",
+                },
+                {
+                  icon: Clock,
+                  label: "Open Hours",
+                  value: "Sat–Thu: 6:00 AM – 11:00 PM · Fri: 3:00 PM – 11:00 PM",
+                },
+                {
+                  icon: Phone,
+                  label: "Call Us",
+                  value: "+880 1700-000000",
+                },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="glass-card glow-hover flex items-center gap-4 rounded-2xl border border-border/60 p-5"
+                >
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <item.icon className="size-5" />
+                  </span>
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                      {item.label}
+                    </p>
+                    <p className="text-sm font-semibold">{item.value}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+      <SiteFooter />
     </div>
   );
 }
