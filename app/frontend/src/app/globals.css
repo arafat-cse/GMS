@@ -114,6 +114,8 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --shadow-glow: 0 0 40px -10px
+    color-mix(in oklch, var(--primary) 40%, transparent);
 }
 
 @layer base {
@@ -125,5 +127,35 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+@utility container {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@utility text-glow {
+  text-shadow: 0 0 24px color-mix(in oklch, var(--primary) 55%, transparent);
+}
+
+@utility glass-card {
+  background: color-mix(in oklch, var(--card) 60%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+@utility glow-hover {
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+
+  &:hover {
+    border-color: color-mix(in oklch, var(--primary) 35%, transparent);
+    box-shadow: 0 0 36px -12px
+      color-mix(in oklch, var(--primary) 45%, transparent);
+    transform: translateY(-2px);
   }
 }

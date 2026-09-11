@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git fetch *)",
+      "Bash(git ls-remote *)",
+      "Bash(awk '{print $2}')",
+      "Bash(npx tsc *)"
+    ]
+  }
+}
