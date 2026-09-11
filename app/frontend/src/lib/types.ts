@@ -51,6 +51,12 @@ export type MembershipPlan = {
   status: "active" | "inactive";
 };
 
+export type Trainer = {
+  id: number;
+  name: string;
+  designation: string | null;
+};
+
 export type MemberRegistration = {
   id: number;
   first_name: string;
